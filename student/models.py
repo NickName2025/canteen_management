@@ -21,5 +21,8 @@ class Dishes(models.Model):
     def display_composition(self):
         return self.composition.replace("|", ", ")
     
+    def get_subscription_price(self):
+        return self.price*8/10
+    
     def display_subscription_price(self):
-        return f"{self.price*8/10}"
+        return f"{self.get_subscription_price()}"

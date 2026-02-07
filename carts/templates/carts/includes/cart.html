@@ -1,0 +1,128 @@
+{% load static %}
+
+<section class="card" id="cart">
+    <h3>Корзина</h3>
+    <div class="order">
+        <div class="chef-panel is-active" data-chef-panel="products">
+            <div class="menu-cards">
+                {% for cart in carts %}
+                    <article class="menu-card">
+                        <div class="menu-card-head">
+                            <h4>{{ cart.dish.name }}</h4>
+                            <span class="menu-price">{{ cart.quantity }}</span>
+                        </div>
+                    </article>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="order-total">
+            <span>Итого <strong>{{ carts.total_quantity }} товар(а)</span>
+            <span><strong>на сумму {{ carts.total_price }} ₽</span>
+        </div>
+        <button class="btn" type="button">Оформить заказ</button>
+    </div>
+</section>
+{% comment %} 
+{% load static %}
+
+<section class="card col-4" id="inventory">
+    <h3>Продукты и готовые блюда</h3>
+    <div class="auth-switch chef-switch" role="tablist">
+        <button class="btn btn-outline" type="button" data-chef-tab="products">Продукты</button>
+        <button class="btn btn-outline is-active" type="button" data-chef-tab="ready">Готовые блюда</button>
+    </div>
+    <div class="chef-tabs">
+        <div class="chef-panel" data-chef-panel="products">
+            <div class="menu-cards">
+                <article class="menu-card">
+                    <div class="menu-card-head">
+                        <h4>Молоко 3,2%</h4>
+                        <span class="menu-price">28 л</span>
+                    </div>
+                </article>
+                <article class="menu-card">
+                    <div class="menu-card-head">
+                        <h4>Куриное филе</h4>
+                        <span class="menu-price">18 кг</span>
+                    </div>
+                </article>
+                <article class="menu-card">
+                    <div class="menu-card-head">
+                        <h4>Яйца куриные</h4>
+                        <span class="menu-price">120 шт</span>
+                    </div>
+                </article>
+                <article class="menu-card">
+                    <div class="menu-card-head">
+                        <h4>Творог</h4>
+                        <span class="menu-price">15 кг</span>
+                    </div>
+                </article>
+                <article class="menu-card">
+                    <div class="menu-card-head">
+                        <h4>Овощная смесь</h4>
+                        <span class="menu-price">24 кг</span>
+                    </div>
+                </article>
+                <article class="menu-card">
+                    <div class="menu-card-head">
+                        <h4>Хлеб цельнозерновой</h4>
+                        <span class="menu-price">60 шт</span>
+                    </div>
+                </article>
+                <article class="menu-card">
+                    <div class="menu-card-head">
+                        <h4>Масло сливочное</h4>
+                        <span class="menu-price">12 кг</span>
+                    </div>
+                </article>
+            </div>
+        </div>
+        <div class="chef-panel is-active" data-chef-panel="ready">
+            <div class="menu-cards">
+                <article class="menu-card">
+                    <div class="menu-card-head">
+                        <h4>Каша овсяная</h4>
+                        <span class="menu-price">40 порций</span>
+                    </div>
+                </article>
+                <article class="menu-card">
+                    <div class="menu-card-head">
+                        <h4>Паста с овощами</h4>
+                        <span class="menu-price">32 порции</span>
+                    </div>
+                </article>
+                <article class="menu-card">
+                    <div class="menu-card-head">
+                        <h4>Суп куриный</h4>
+                        <span class="menu-price">26 порций</span>
+                    </div>
+                </article>
+                <article class="menu-card">
+                    <div class="menu-card-head">
+                        <h4>Сырники</h4>
+                        <span class="menu-price">30 порций</span>
+                    </div>
+                </article>
+                <article class="menu-card">
+                    <div class="menu-card-head">
+                        <h4>Рис с овощами</h4>
+                        <span class="menu-price">22 порции</span>
+                    </div>
+                </article>
+                <article class="menu-card">
+                    <div class="menu-card-head">
+                        <h4>Тефтели в соусе</h4>
+                        <span class="menu-price">18 порций</span>
+                    </div>
+                </article>
+                <article class="menu-card">
+                    <div class="menu-card-head">
+                        <h4>Компот ягодный</h4>
+                        <span class="menu-price">50 порций</span>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </div>
+</section> {% endcomment %}
