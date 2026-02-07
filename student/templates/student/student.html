@@ -42,7 +42,6 @@
                                     <div class="menu-card-head">
                                         <h4>{{ dish.name }} - {{ dish.quantity }} ед</h4>
                                     </div>
-                                    <p class="menu-desc">{{ dish.display_composition }}</p>
                                     <div class="menu-actions">
                                         <button class="menu-qty-btn" type="button"><a href="{% url "cart:cart_add" dish.slug dish.price %}">+1 ({{ dish.price }} ₽/ед)</a></button>
                                         <button class="menu-qty-btn" type="button"><a href="{% url "cart:cart_add" dish.slug dish.get_subscription_price %}">+5 ({{ dish.display_subscription_price }} ₽/ед)</a></button>
@@ -79,21 +78,44 @@
                             </div>
                         </div>
                     </section>
-
                     <section class="card" id="profile">
                         <h3>Аллергии и предпочтения</h3>
-                        <p class="empty">Нет добавленных особенностей.</p>
-                        <div class="field">
-                            <span>Выберите</span>
-                            <select name="allergy" aria-label="Аллергия или предпочтение">
-                                <option>Без глютена</option>
-                                <option>Без лактозы</option>
-                                <option>Без орехов</option>
-                                <option>Вегетарианское</option>
-                                <option>Без сахара</option>
-                            </select>
-                        </div>
-                        <button class="btn" type="button">Сохранить</button>
+                        <form action="{% url "student:allergy_indication" %}" method="post">
+                            {% csrf_token %}
+                            <div class="field">
+                                <div>
+                                    <label class="form-label">Без глютена</label>
+                                    <input type="checkbox" class="form-control" name="Gluten_free" value="Без глютена"
+                                    {% if request.POST.Gluten_free %}checked{% endif %}/>
+                                </div>
+
+                                <div>
+                                    <label class="form-label">Без лактозы</label>
+                                    <input type="checkbox" class="form-control" name="Lactose_free" value="Без лактозы"
+                                    {% if request.POST.Lactose_free %}checked{% endif %}/>
+                                </div>
+
+                                <div>
+                                    <label class="form-label">Без сахара</label>
+                                    <input type="checkbox" class="form-control" name="Sugar_free" value="Без сахара"
+                                    {% if request.POST.Sugar_free %}checked{% endif %}/>
+                                </div>
+
+                                <div>
+                                    <label class="form-label">Вегетарианское</label>
+                                    <input type="checkbox" class="form-control" name="Vegetarian" value="Вегетарианское"
+                                    {% if request.POST.Vegetarian %}checked{% endif %}/>
+                                </div>
+                                {% comment %} <select name="allergy" class="form-control" aria-label="Аллергия или предпочтение">
+                                    <option value="Без глютена">Без глютена</option>
+                                    <option value="Без лактозы">Без лактозы</option>
+                                    <option value="Вегетарианское">Вегетарианское</option>
+                                    <option value="Без сахара">Без сахара</option>
+                                </select> {% endcomment %}
+                            </div>
+                            <button class="btn" type="submit">Сохранить</button>
+                        </form>
+                        
                     </section>
 
                     <section class="card">
@@ -107,11 +129,11 @@
                         <div class="field">
                             <span>Оценка</span>
                             <select name="rating" aria-label="Оценка">
-                                <option>5 — отлично</option>
-                                <option>4 — хорошо</option>
-                                <option>3 — нормально</option>
-                                <option>2 — плохо</option>
-                                <option>1 — ужасно</option>
+                                <option value="5">5 — отлично</option>
+                                <option value="4">4 — хорошо</option>
+                                <option value="3">3 — нормально</option>
+                                <option value="2">2 — плохо</option>
+                                <option value="1">1 — ужасно</option>
                             </select>
                         </div>
                         <div class="field">

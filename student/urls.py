@@ -6,4 +6,5 @@ app_name = 'student'
 
 urlpatterns = [
     path('student/', views.student, name='student'),
+    path('student/', views.allergy_indication, name='allergy_indication'),
 ]
