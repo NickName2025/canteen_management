@@ -1,0 +1,264 @@
+﻿{% load static %}
+
+<!doctype html>
+<html lang="ru">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Умная столовая — кабинет ученика</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&family=Yeseva+One&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="{% static "css/style.css" %}" />
+</head>
+
+<body class="student-page">
+    <div class="app">
+        <div class="exit-row">
+            <div class="container">
+                <a class="btn btn-outline" href="login.html">Выйти</a>
+            </div>
+        </div>
+
+        <main class="section">
+            <div class="container">
+                <div class="dashboard-head">
+                    <h2>Кабинет ученика</h2>
+                </div>
+
+                <div class="panel-grid student-grid">
+                    <section class="card menu-wide" id="menu">
+                        <h3>Меню</h3>
+                        <div class="menu-filters">
+                            <button class="btn btn-outline is-active" type="button" data-filter="breakfast">Завтраки</button>
+                            <button class="btn btn-outline" type="button" data-filter="lunch">Обеды</button>
+                        </div>
+                        <div class="menu-cards">
+                            <article class="menu-card" data-category="breakfast">
+                                <div class="menu-card-head">
+                                    <h4>Овсяная каша с ягодами</h4>
+                                    <span class="menu-price">70 ₽</span>
+                                </div>
+                                <p class="menu-desc">Нежная овсянка, сезонные ягоды, лёгкий мёд.</p>
+                                <div class="menu-actions">
+                                    <button class="menu-qty-btn" type="button">+1</button>
+                                    <button class="menu-qty-btn" type="button">+5</button>
+                                </div>
+                            </article>
+                            <article class="menu-card" data-category="breakfast">
+                                <div class="menu-card-head">
+                                    <h4>Омлет с зеленью</h4>
+                                    <span class="menu-price">80 ₽</span>
+                                </div>
+                                <p class="menu-desc">Воздушный омлет, свежая зелень, немного сыра.</p>
+                                <div class="menu-actions">
+                                    <button class="menu-qty-btn" type="button">+1</button>
+                                    <button class="menu-qty-btn" type="button">+5</button>
+                                </div>
+                            </article>
+                            <article class="menu-card" data-category="breakfast">
+                                <div class="menu-card-head">
+                                    <h4>Сырники со сметаной</h4>
+                                    <span class="menu-price">85 ₽</span>
+                                </div>
+                                <p class="menu-desc">Творожные сырники, сметана, немного сахара.</p>
+                                <div class="menu-actions">
+                                    <button class="menu-qty-btn" type="button">+1</button>
+                                    <button class="menu-qty-btn" type="button">+5</button>
+                                </div>
+                            </article>
+                            <article class="menu-card" data-category="breakfast">
+                                <div class="menu-card-head">
+                                    <h4>Гречневая каша с молоком</h4>
+                                    <span class="menu-price">75 ₽</span>
+                                </div>
+                                <p class="menu-desc">Классическая гречка, тёплое молоко.</p>
+                                <div class="menu-actions">
+                                    <button class="menu-qty-btn" type="button">+1</button>
+                                    <button class="menu-qty-btn" type="button">+5</button>
+                                </div>
+                            </article>
+                            <article class="menu-card" data-category="breakfast">
+                                <div class="menu-card-head">
+                                    <h4>Тост с яйцом и овощами</h4>
+                                    <span class="menu-price">90 ₽</span>
+                                </div>
+                                <p class="menu-desc">Хрустящий тост, яйцо, помидоры и огурцы.</p>
+                                <div class="menu-actions">
+                                    <button class="menu-qty-btn" type="button">+1</button>
+                                    <button class="menu-qty-btn" type="button">+5</button>
+                                </div>
+                            </article>
+                            <article class="menu-card" data-category="lunch">
+                                <div class="menu-card-head">
+                                    <h4>Борщ с говядиной</h4>
+                                    <span class="menu-price">120 ₽</span>
+                                </div>
+                                <p class="menu-desc">Насыщенный борщ, мясо, сметана отдельно.</p>
+                                <div class="menu-actions">
+                                    <button class="menu-qty-btn" type="button">+1</button>
+                                    <button class="menu-qty-btn" type="button">+5</button>
+                                </div>
+                            </article>
+                            <article class="menu-card" data-category="lunch">
+                                <div class="menu-card-head">
+                                    <h4>Куриная котлета с пюре</h4>
+                                    <span class="menu-price">130 ₽</span>
+                                </div>
+                                <p class="menu-desc">Домашняя котлета, картофельное пюре, соус.</p>
+                                <div class="menu-actions">
+                                    <button class="menu-qty-btn" type="button">+1</button>
+                                    <button class="menu-qty-btn" type="button">+5</button>
+                                </div>
+                            </article>
+                            <article class="menu-card" data-category="lunch">
+                                <div class="menu-card-head">
+                                    <h4>Паста с овощами</h4>
+                                    <span class="menu-price">115 ₽</span>
+                                </div>
+                                <p class="menu-desc">Паста, овощи, лёгкий соус.</p>
+                                <div class="menu-actions">
+                                    <button class="menu-qty-btn" type="button">+1</button>
+                                    <button class="menu-qty-btn" type="button">+5</button>
+                                </div>
+                            </article>
+                            <article class="menu-card" data-category="lunch">
+                                <div class="menu-card-head">
+                                    <h4>Рыба запечённая с рисом</h4>
+                                    <span class="menu-price">135 ₽</span>
+                                </div>
+                                <p class="menu-desc">Филе рыбы, ароматный рис.</p>
+                                <div class="menu-actions">
+                                    <button class="menu-qty-btn" type="button">+1</button>
+                                    <button class="menu-qty-btn" type="button">+5</button>
+                                </div>
+                            </article>
+                            <article class="menu-card" data-category="lunch">
+                                <div class="menu-card-head">
+                                    <h4>Суп-лапша</h4>
+                                    <span class="menu-price">110 ₽</span>
+                                </div>
+                                <p class="menu-desc">Куриный бульон, лапша, зелень.</p>
+                                <div class="menu-actions">
+                                    <button class="menu-qty-btn" type="button">+1</button>
+                                    <button class="menu-qty-btn" type="button">+5</button>
+                                </div>
+                            </article>
+                        </div>
+                    </section>
+
+                    <section class="card" id="cart">
+                        <h3>Корзина</h3>
+                        <div class="order">
+                            <p class="empty">Нет выбранных блюд.</p>
+                            <div class="order-total">
+                                <span>Итого</span>
+                                <span>0 ₽</span>
+                            </div>
+                            <button class="btn" type="button">Оформить заказ</button>
+                        </div>
+                    </section>
+                    <section class="card" id="issue">
+                        <h3>Получение питания</h3>
+                        <div class="field">
+                            <span>Код выдачи</span>
+                            <input type="text" name="issue_code" placeholder="Введите код" aria-label="Код выдачи" />
+                        </div>
+                        <button class="btn" type="button">Отметить получение</button>
+                    </section>
+
+                    <section class="card" id="purchased">
+                        <h3>Купленные блюда и коды выдачи</h3>
+                        <div class="grid-table">
+                            <div class="grid-row head">
+                                <span>Блюдо</span>
+                                <span>Дата покупки</span>
+                                <span>Кол-во</span>
+                                <span>Код выдачи</span>
+                            </div>
+                            <div class="grid-row empty-row">
+                                <span class="empty">Покупок пока нет.</span>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="card" id="profile">
+                        <h3>Аллергии и предпочтения</h3>
+                        <p class="empty">Нет добавленных особенностей.</p>
+                        <div class="field">
+                            <span>Выберите</span>
+                            <select name="allergy" aria-label="Аллергия или предпочтение">
+                                <option>Без глютена</option>
+                                <option>Без лактозы</option>
+                                <option>Без орехов</option>
+                                <option>Вегетарианское</option>
+                                <option>Без сахара</option>
+                            </select>
+                        </div>
+                        <button class="btn" type="button">Сохранить</button>
+                    </section>
+
+                    <section class="card">
+                        <h3>Отзывы о блюдах</h3>
+                        <div class="field">
+                            <span>Блюдо</span>
+                            <select name="dish" aria-label="Блюдо">
+                                <option>Выберите из списка</option>
+                            </select>
+                        </div>
+                        <div class="field">
+                            <span>Оценка</span>
+                            <select name="rating" aria-label="Оценка">
+                                <option>5 — отлично</option>
+                                <option>4 — хорошо</option>
+                                <option>3 — нормально</option>
+                                <option>2 — плохо</option>
+                                <option>1 — ужасно</option>
+                            </select>
+                        </div>
+                        <div class="field">
+                            <span>Комментарий</span>
+                            <textarea rows="3" name="comment" placeholder="Комментарий"
+                                aria-label="Комментарий"></textarea>
+                        </div>
+                        <button class="btn" type="button">Отправить отзыв</button>
+                    </section>
+
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const buttons = document.querySelectorAll('.menu-filters .btn');
+            const cards = document.querySelectorAll('.menu-card');
+
+            const applyFilter = (filter) => {
+                cards.forEach(card => {
+                    const show = card.dataset.category === filter;
+                    card.style.display = show ? '' : 'none';
+                });
+            };
+
+            buttons.forEach(button => {
+                button.addEventListener('click', () => {
+                    buttons.forEach(btn => btn.classList.remove('is-active'));
+                    button.classList.add('is-active');
+                    applyFilter(button.dataset.filter);
+                });
+            });
+
+            const initial = document.querySelector('.menu-filters .btn.is-active') || buttons[0];
+            if (initial) {
+                initial.classList.add('is-active');
+                applyFilter(initial.dataset.filter);
+            }
+        });
+    </script>
+
+</body>
+
+</html>

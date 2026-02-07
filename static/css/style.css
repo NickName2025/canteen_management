@@ -1,0 +1,509 @@
+﻿/* Базовые переменные проекта */
+:root {
+    /* Цветовая палитра и общие переменные */
+    --bg: #f5efe7;
+    --surface: #fff8f0;
+    --ink: #2d2b27;
+    --muted: #6f6358;
+    --accent: #e07b39;
+    --accent-2: #2f6a5d;
+    --line: #e4d5c3;
+    --shadow: 0 12px 30px rgba(34, 32, 28, 0.12);
+    --radius: 18px;
+}
+
+/* Сброс и базовая геометрия */
+* {
+    box-sizing: border-box;
+}
+
+/* Фон страницы и базовая типографика */
+body {
+    margin: 0;
+    font-family: "Rubik", system-ui, sans-serif;
+    color: var(--ink);
+    background:
+        radial-gradient(circle at 12% 18%, rgba(224, 123, 57, 0.18), transparent 50%),
+        radial-gradient(circle at 85% 12%, rgba(47, 106, 93, 0.18), transparent 45%),
+        radial-gradient(circle at 90% 78%, rgba(242, 196, 92, 0.2), transparent 55%),
+        var(--bg);
+    min-height: 100vh;
+}
+
+/* Ссылки и заголовки */
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    font-family: "Yeseva One", serif;
+    margin: 0 0 12px;
+}
+
+p {
+    margin: 0 0 12px;
+}
+
+/* Поля и элементы форм */
+button,
+input,
+select,
+textarea {
+    font-family: inherit;
+}
+
+input,
+select,
+textarea {
+    border-radius: 12px;
+    border: 1px solid var(--line);
+    padding: 10px 12px;
+    background: #fff;
+}
+
+textarea {
+    resize: vertical;
+}
+
+/* Базовые контейнеры */
+.app {
+    position: relative;
+}
+
+.container {
+    width: min(1200px, 92vw);
+    margin: 0 auto;
+}
+
+.section {
+    padding: 72px 0;
+}
+
+/* Панель выхода */
+.exit-row .container {
+    display: flex;
+    justify-content: center;
+    padding: 18px 0;
+}
+
+/* Кнопки */
+.btn {
+    border: none;
+    padding: 12px 20px;
+    border-radius: 999px;
+    background: var(--accent);
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 10px 18px rgba(224, 123, 57, 0.25);
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+}
+
+.btn-outline {
+    background: transparent;
+    color: var(--ink);
+    border: 1px solid var(--line);
+    box-shadow: none;
+}
+
+/* Небольшие пояснения */
+.note {
+    font-size: 0.85rem;
+    color: var(--muted);
+}
+
+/* Авторизация и регистрация */
+.auth-layout {
+    display: grid;
+    place-items: center;
+    padding: 80px 0 60px;
+    min-height: calc(100vh - 120px);
+}
+
+.auth-card {
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 24px;
+    box-shadow: var(--shadow);
+    height: 520px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.auth-panels {
+    display: grid;
+    gap: 18px;
+    width: min(420px, 92vw);
+    margin: 0 auto;
+}
+
+.auth-switch {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+}
+
+.auth-switch .btn {
+    padding: 10px 18px;
+    font-size: 0.95rem;
+    box-shadow: none;
+    width: 100%;
+}
+
+.auth-views .auth-card {
+    display: none;
+}
+
+.auth-views .auth-card.is-active {
+    display: block;
+}
+
+.auth-switch .btn.is-active {
+    background: var(--accent);
+    color: #fff;
+    border-color: transparent;
+    box-shadow: 0 10px 18px rgba(224, 123, 57, 0.25);
+}
+
+/* Переключатель блоков на странице повара */
+.chef-switch {
+    margin: 12px 0;
+}
+
+.chef-tabs .chef-panel {
+    display: none;
+}
+
+.chef-tabs .chef-panel.is-active {
+    display: block;
+}
+
+.auth-card .form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    flex: 1 1 auto;
+    min-height: 100%;
+}
+
+.auth-card .form .btn {
+    width: 100%;
+    margin-top: auto;
+    margin-bottom: 30px;
+}
+
+/* Карточки и сетка дашборда */
+.dashboard-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.panel-grid {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: 16px;
+}
+
+/* Сетка ученика */
+.student-grid {
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+    align-items: start;
+}
+
+.student-grid .menu-wide {
+    grid-column: 1;
+    grid-row: 1 / span 10;
+    min-height: 720px;
+}
+
+.student-grid > .card:not(.menu-wide) {
+    grid-column: 2;
+}
+
+/* Колоночные утилиты для сеток */
+.col-4 {
+    grid-column: span 4;
+}
+
+.col-5 {
+    grid-column: span 5;
+}
+
+.col-6 {
+    grid-column: span 6;
+}
+
+.col-8 {
+    grid-column: span 8;
+}
+
+.col-12 {
+    grid-column: span 12;
+}
+
+/* Карточки */
+.card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 18px;
+    box-shadow: 0 10px 22px rgba(34, 32, 28, 0.08);
+}
+
+.student-page .card .btn {
+    width: 100%;
+    margin-top: 12px;
+}
+
+/* Формы */
+.form {
+    display: grid;
+    gap: 12px;
+}
+
+.field {
+    display: grid;
+    gap: 6px;
+    font-size: 0.95rem;
+}
+
+.field span {
+    color: var(--muted);
+}
+
+/* Меню (карточки блюд) */
+.menu-filters {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.menu-filters .btn {
+    padding: 8px 16px;
+}
+
+.menu-filters .btn.is-active {
+    background: var(--accent);
+    color: #fff;
+    border-color: transparent;
+    box-shadow: 0 10px 18px rgba(224, 123, 57, 0.25);
+}
+
+.menu-cards {
+    display: grid;
+    gap: 12px;
+}
+
+.menu-card {
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 14px;
+    background: #fff;
+    display: grid;
+    gap: 8px;
+}
+
+.menu-card-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+}
+
+.menu-card-head h4 {
+    margin: 0;
+}
+
+.menu-price {
+    font-weight: 700;
+}
+
+.menu-desc {
+    margin: 0;
+    color: var(--muted);
+}
+
+.menu-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 4px;
+}
+
+.menu-qty-btn {
+    border: 1px solid var(--line);
+    background: #fff;
+    color: var(--ink);
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.menu-qty-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 12px rgba(34, 32, 28, 0.12);
+}
+
+
+/* Табличные блоки (выдача, склад) */
+.grid-table,
+.stock-list {
+    display: grid;
+    gap: 10px;
+}
+
+.grid-row,
+.stock-row {
+    display: grid;
+    align-items: center;
+    padding: 10px 12px;
+    border-radius: 12px;
+    border: 1px solid var(--line);
+    background: #fff;
+}
+
+.grid-row {
+    grid-template-columns: 1fr 1fr 120px 140px;
+    gap: 10px;
+}
+
+/* Таблица выдачи повара */
+.chef-page #issue .grid-row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+/* Таблица покупок ученика — чтобы не выходила за карточку */
+#purchased .grid-row {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+#purchased .grid-row span {
+    min-width: 0;
+    word-break: break-word;
+}
+
+#purchased .grid-row.empty-row {
+    padding: 10px 12px;
+}
+
+#purchased .grid-row.empty-row span {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#purchased .grid-table {
+    overflow-x: hidden;
+}
+
+.stock-row {
+    grid-template-columns: 1.2fr 0.6fr 0.6fr 0.6fr;
+    gap: 10px;
+}
+
+.grid-row.head,
+.stock-row.head {
+    background: transparent;
+    border: none;
+    color: var(--muted);
+    font-size: 0.85rem;
+}
+
+.grid-row.empty-row,
+.stock-row.empty-row {
+    grid-template-columns: 1fr;
+    padding: 12px;
+}
+
+/* Заказ */
+.order {
+    display: grid;
+    gap: 12px;
+}
+
+.order-total {
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px dashed var(--line);
+    padding-top: 10px;
+    font-weight: 700;
+}
+
+
+/* Текстовые пустые состояния */
+.empty {
+    font-size: 0.92rem;
+    color: var(--muted);
+}
+
+/* Фильтры и вспомогательные блоки */
+.toolbar {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+}
+
+.toolbar input,
+.toolbar select {
+    flex: 1;
+    min-width: 160px;
+}
+
+/* KPI и статистика */
+.kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+    margin-top: 12px;
+}
+
+.kpi {
+    background: rgba(47, 106, 93, 0.1);
+    border-radius: 14px;
+    padding: 14px;
+}
+
+.kpi-title {
+    color: var(--muted);
+    font-size: 0.9rem;
+    margin: 0 0 6px;
+}
+
+.kpi-value {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+/* Фильтры статистики */
+.stat-filters {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+}
+
+/* Заглушка графика */
+.chart-placeholder {
+    margin-top: 16px;
+    border: 1px dashed var(--line);
+    border-radius: 14px;
+    padding: 18px;
+    color: var(--muted);
+    background: rgba(255, 255, 255, 0.6);
+}
