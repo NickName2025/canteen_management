@@ -30,16 +30,25 @@
                 <div class="auth-views">
                     <section class="auth-card is-active" id="login">
                         <h2>Авторизация</h2>
-                        <form class="form">
+                        <form action="{% url "user:login" %}" method="post">
+                            {% csrf_token %}
                             <div class="field">
-                                <span>Логин</span>
-                                <input type="text" name="login" placeholder="student" aria-label="Логин" />
+                                <label for="id_username" class="form-label">Логин</label>
+                                <input type="text" class="form-control"
+                                    value="{% if form.username.value %}{{ form.username.value }}{% endif %}"
+                                    name="username" id="id_username"
+                                    placeholder="Введите ваше имя пользователя"
+                                    required>
                             </div>
                             <div class="field">
-                                <span>Пароль</span>
-                                <input type="password" name="password" placeholder="••••••••" aria-label="Пароль" />
+                                <label for="id_password" class="form-label">Пароль</label>
+                                <input type="password" class="form-control"
+                                    value="{% if form.password.value %}{{ form.password.value }}{% endif %}"
+                                    name="password" id="id_password"
+                                    placeholder="Введите ваш пароль"
+                                    required>
                             </div>
-                            <button class="btn" type="button">Войти</button>
+                            <button class="btn" type="submit">Войти</button>
                         </form>
                     </section>
                 </div>

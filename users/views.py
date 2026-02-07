@@ -3,11 +3,29 @@ from django.shortcuts import render
 from django.urls import reverse
 from django.contrib import auth
 
-from users.forms import UserRegistrationForm
+from users.forms import UserLoginForm, UserRegistrationForm
 
 
 def login(request):
-    return render(request, 'users/login.html')
+    if request.method == 'POST':
+        form = UserLoginForm(data=request.POST)
+        if form.is_valid():
+            username = request.POST['username']
+            password = request.POST['password']
+            user = auth.authenticate(username=username, password=password)
+
+            if user:
+                auth.login(request, user)
+                print(f"{username}, Вы вошли в аккаунт")
+                    
+                return HttpResponseRedirect(reverse('student:student'))
+    else:
+        form = UserLoginForm()
+
+    context = {
+        'form': form
+    }
+    return render(request, 'users/login.html', context)
 
 def registration(request):
     if request.method == 'POST':
