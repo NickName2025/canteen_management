@@ -1,5 +1,6 @@
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.contrib import auth
 
@@ -50,5 +51,8 @@ def registration(request):
 
     return render(request, 'users/registration.html', context)
 
+@login_required
 def logout(request):
-    ...
+    print(request, f"{request.user.username}, Вы вышли из аккаунта")
+    auth.logout(request)
+    return redirect(reverse('user:login'))
