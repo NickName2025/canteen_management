@@ -36,17 +36,26 @@
                             <button class="btn btn-outline" type="button" data-filter="lunch">Обеды</button>
                         </div>
                         <div class="menu-cards">
-                            <article class="menu-card" data-category="breakfast">
-                                <div class="menu-card-head">
-                                    <h4>Овсяная каша с ягодами</h4>
-                                    <span class="menu-price">70 ₽</span>
-                                </div>
+                            {% for dish in dishes %}
+                                <article class="menu-card" data-category="{{ dish.food_intake }}">
+                                    <div class="menu-card-head">
+                                        <h4>{{ dish.name }} - {{ dish.quantity }} ед</h4>
+                                    </div>
+                                    <p class="menu-desc">{{ dish.display_composition }}</p>
+                                    <div class="menu-actions">
+                                        <button class="menu-qty-btn" type="button">+1 ({{ dish.price }} ₽/ед)</button>
+                                        <button class="menu-qty-btn" type="button">+5 ({{ dish.display_subscription_price }} ₽/ед)</button>
+                                    </div>
+                                </article>
+                            {% endfor %}
+                            {% comment %} <article class="menu-card" data-category="breakfast">
                                 <p class="menu-desc">Нежная овсянка, сезонные ягоды, лёгкий мёд.</p>
                                 <div class="menu-actions">
                                     <button class="menu-qty-btn" type="button">+1</button>
                                     <button class="menu-qty-btn" type="button">+5</button>
                                 </div>
                             </article>
+
                             <article class="menu-card" data-category="breakfast">
                                 <div class="menu-card-head">
                                     <h4>Омлет с зеленью</h4>
@@ -145,7 +154,7 @@
                                     <button class="menu-qty-btn" type="button">+1</button>
                                     <button class="menu-qty-btn" type="button">+5</button>
                                 </div>
-                            </article>
+                            </article> {% endcomment %}
                         </div>
                     </section>
 
