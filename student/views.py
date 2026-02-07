@@ -1,9 +1,10 @@
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 
-from student.models import Dishes
+from student.models import Dishes, Reviews
 
 def student(request):
+    print("student")
     dishes = Dishes.objects.all()
 
     if request.POST.get("Gluten_free") is not None:
@@ -26,8 +27,19 @@ def student(request):
 @login_required
 def allergy_indication(request):
     if request.method == 'POST':
-        print("POST")
         print(request.POST.get("Gluten_free"))
         print(request.POST.get("Lactose_free"))
 
     return render(request, "student/student.html")
+
+@login_required
+def sending_reviews(request):
+    if request.method == 'POST':
+        dish_name = request.POST.get("dish_name")
+        estimation = request.POST.get("rating")
+        comment = request.POST.get("comment")
+        
+        Reviews.objects.create(dish_name=dish_name, estimation=estimation, comment=comment)
+        print("Отзыв успешно отправлен!")
+
+    return redirect(request.META['HTTP_REFERER'])

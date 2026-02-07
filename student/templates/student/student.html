@@ -106,12 +106,6 @@
                                     <input type="checkbox" class="form-control" name="Vegetarian" value="Вегетарианское"
                                     {% if request.POST.Vegetarian %}checked{% endif %}/>
                                 </div>
-                                {% comment %} <select name="allergy" class="form-control" aria-label="Аллергия или предпочтение">
-                                    <option value="Без глютена">Без глютена</option>
-                                    <option value="Без лактозы">Без лактозы</option>
-                                    <option value="Вегетарианское">Вегетарианское</option>
-                                    <option value="Без сахара">Без сахара</option>
-                                </select> {% endcomment %}
                             </div>
                             <button class="btn" type="submit">Сохранить</button>
                         </form>
@@ -120,28 +114,34 @@
 
                     <section class="card">
                         <h3>Отзывы о блюдах</h3>
-                        <div class="field">
-                            <span>Блюдо</span>
-                            <select name="dish" aria-label="Блюдо">
-                                <option>Выберите из списка</option>
-                            </select>
-                        </div>
-                        <div class="field">
-                            <span>Оценка</span>
-                            <select name="rating" aria-label="Оценка">
-                                <option value="5">5 — отлично</option>
-                                <option value="4">4 — хорошо</option>
-                                <option value="3">3 — нормально</option>
-                                <option value="2">2 — плохо</option>
-                                <option value="1">1 — ужасно</option>
-                            </select>
-                        </div>
-                        <div class="field">
-                            <span>Комментарий</span>
-                            <textarea rows="3" name="comment" placeholder="Комментарий"
-                                aria-label="Комментарий"></textarea>
-                        </div>
-                        <button class="btn" type="button">Отправить отзыв</button>
+                        <form action="{% url "student:sending_reviews" %}" method="post">
+                            {% csrf_token %}
+                            <div class="field">
+                                <span>Блюдо</span>
+                                <select name="dish_name" aria-label="Блюдо">
+                                    {% for dish in dishes %}
+                                        <option value="{{ dish.name }}">{{ dish.name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            
+                            <div class="field">
+                                <span>Оценка</span>
+                                <select name="rating" aria-label="Оценка">
+                                    <option value="5 — отлично">5 — отлично</option>
+                                    <option value="4 — хорошо">4 — хорошо</option>
+                                    <option value="3 — нормально">3 — нормально</option>
+                                    <option value="2 — плохо">2 — плохо</option>
+                                    <option value="1 — ужасно">1 — ужасно</option>
+                                </select>
+                            </div>
+                            <div class="field">
+                                <span>Комментарий</span>
+                                <textarea rows="3" name="comment" placeholder="Комментарий"
+                                    aria-label="Комментарий"></textarea>
+                            </div>
+                            <button class="btn" type="submit">Отправить отзыв</button>
+                        </form>
                     </section>
 
                 </div>

@@ -29,8 +29,8 @@ class Dishes(models.Model):
         return f"{self.get_subscription_price()}"
     
 class Reviews(models.Model):
-    dish_name = models.CharField(max_length=150, unique=True, verbose_name='Название блюда')
-    estimation = models.CharField(max_length=150, unique=True, verbose_name='Оценка')
+    dish_name = models.CharField(max_length=150, verbose_name='Название блюда')
+    estimation = models.CharField(max_length=150, verbose_name='Оценка')
     comment = models.TextField(verbose_name="Комментарий")
 
     class Meta:
