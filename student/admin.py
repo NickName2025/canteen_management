@@ -1,3 +1,18 @@
 from django.contrib import admin
 
-# Register your models here.
+from student.models import Dishes
+
+@admin.register(Dishes)
+class DishesAdmin(admin.ModelAdmin):
+    prepopulated_fields = {'slug': ('name',)}
+    list_display = ["name", "quantity", "price", "food_intake"]
+    list_editable = ["quantity"]
+    search_fields = []
+    list_filter = ["name", "quantity", "price", "food_intake"]
+    fields = [
+        "name",
+        "slug",
+        "price",
+        "quantity",
+        "food_intake"
+    ]
