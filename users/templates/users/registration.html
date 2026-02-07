@@ -1,0 +1,65 @@
+﻿{% load static %}
+
+<!doctype html>
+<html lang="ru">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Умная столовая — регистрация</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&family=Yeseva+One&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="{% static "css/style.css" %}" />
+</head>
+
+<body>
+    <div class="app">
+        <main class="auth-layout">
+            <div class="auth-panels">
+                <div class="auth-switch">
+                    <button class="btn btn-outline" type="button" aria-pressed="false">
+                    <a href="/login">Авторизация</a>
+                    </button>
+                    <button class="btn btn-outline is-active" type="button" aria-pressed="true">
+                        Регистрация
+                    </button>
+                </div>
+
+                <div class="auth-views">
+                    <section class="auth-card is-active" id="register">
+                        <h2>Создание аккаунта</h2>
+                        <form class="form">
+                            <div class="field">
+                                <span>ФИО</span>
+                                <input type="text" name="student_name" placeholder="Иванов Иван" aria-label="ФИО" />
+                            </div>
+                            <div class="field">
+                                <span>Класс</span>
+                                <input type="text" name="student_class" placeholder="8Б" aria-label="Класс" />
+                            </div>
+                            <div class="field">
+                                <span>Логин</span>
+                                <input type="text" name="student_login" placeholder="student" aria-label="Логин" />
+                            </div>
+                            <div class="field">
+                                <span>Пароль</span>
+                                <input type="password" name="student_password" placeholder="••••••••"
+                                    aria-label="Пароль" />
+                            </div>
+                            <div class="field">
+                                <span>Подтверждение пароля</span>
+                                <input type="password" name="student_password_confirm" placeholder="••••••••"
+                                    aria-label="Подтверждение пароля" />
+                            </div>
+                            <button class="btn" type="button">Создать аккаунт</button>
+                        </form>
+                    </section>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+
+</html>
