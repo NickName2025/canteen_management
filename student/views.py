@@ -44,7 +44,7 @@ def sending_reviews(request):
         estimation = request.POST.get("rating")
         comment = request.POST.get("comment")
         
-        Reviews.objects.create(dish_name=dish_name, estimation=estimation, comment=comment)
+        Reviews.objects.create(user=request.user, dish_name=dish_name, estimation=estimation, comment=comment)
         print("Отзыв успешно отправлен!")
 
     return redirect(request.META['HTTP_REFERER'])

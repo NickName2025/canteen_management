@@ -31,6 +31,7 @@ class Dishes(models.Model):
         return f"{self.get_subscription_price()}"
     
 class Reviews(models.Model):
+    user = models.ForeignKey(to=User, on_delete=models.CASCADE, blank=True, null=True, verbose_name='Пользователь')
     dish_name = models.CharField(max_length=150, verbose_name='Название блюда')
     estimation = models.CharField(max_length=150, verbose_name='Оценка')
     comment = models.TextField(verbose_name="Комментарий")

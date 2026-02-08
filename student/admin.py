@@ -21,14 +21,12 @@ class DishesAdmin(admin.ModelAdmin):
 
 @admin.register(Reviews)
 class ReviewsAdmin(admin.ModelAdmin):
-    list_display = ["dish_name", "estimation"]
+    list_display = ["user_display", "dish_name", "estimation"]
     list_filter = ["dish_name", "estimation"]
 
-    fields = [
-        "dish_name",
-        "estimation",
-        "comment",
-    ]
+    def user_display(self, obj):
+        if obj.user:
+            return str(obj.user)
 
 @admin.register(PurchasedMeals)
 class PurchasedMealsAdmin(admin.ModelAdmin):
