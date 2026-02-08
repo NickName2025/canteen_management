@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from student.models import Dishes, Reviews
+from student.models import Dishes, Reviews, PurchasedMeals
 
 @admin.register(Dishes)
 class DishesAdmin(admin.ModelAdmin):
@@ -29,3 +29,16 @@ class ReviewsAdmin(admin.ModelAdmin):
         "estimation",
         "comment",
     ]
+
+@admin.register(PurchasedMeals)
+class PurchasedMealsAdmin(admin.ModelAdmin):
+
+    list_display = ["user_display", "dish_display", "key", "created_timestamp"]
+    list_filter = ["created_timestamp", "user", "dish__name"]
+
+    def user_display(self, obj):
+        if obj.user:
+            return str(obj.user)
+
+    def dish_display(self, obj):
+        return str(obj.dish.name)

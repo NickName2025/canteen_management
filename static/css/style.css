@@ -28,6 +28,9 @@ body {
         radial-gradient(circle at 90% 78%, rgba(242, 196, 92, 0.2), transparent 55%),
         var(--bg);
     min-height: 100vh;
+    line-height: 1.55;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
 }
 
 /* Ссылки и заголовки */
@@ -42,6 +45,7 @@ h3,
 h4 {
     font-family: "Yeseva One", serif;
     margin: 0 0 12px;
+    line-height: 1.15;
 }
 
 p {

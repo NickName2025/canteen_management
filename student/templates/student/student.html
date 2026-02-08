@@ -51,33 +51,35 @@
                             {% endfor %}
                         </div>
                     </section>
-                    
+
                     {% user_carts request as carts %}
                     {% include "carts/includes/cart.html" %}
 
                     <section class="card" id="issue">
                         <h3>Получение питания</h3>
-                        <div class="field">
-                            <span>Код выдачи</span>
-                            <input type="text" name="issue_code" placeholder="Введите код" aria-label="Код выдачи" />
-                        </div>
-                        <button class="btn" type="button">Отметить получение</button>
+                        <form action="{% url "student:getting_meals" %}" method="post">
+                            {% csrf_token %}
+                            <div class="field">
+                                <input type="text" name="receipt_code" class="form-control"/>
+                            </div>
+                            <button class="btn" type="sumbit">Отметить получение</button>
+                        </form>
                     </section>
 
                     <section class="card" id="purchased">
                         <h3>Купленные блюда и коды выдачи</h3>
-                        <div class="grid-table">
-                            <div class="grid-row head">
-                                <span>Блюдо</span>
-                                <span>Дата покупки</span>
-                                <span>Кол-во</span>
-                                <span>Код выдачи</span>
-                            </div>
-                            <div class="grid-row empty-row">
-                                <span class="empty">Покупок пока нет.</span>
-                            </div>
+                        <div class="menu-cards">
+                            {% for purchased_meal in purchased_meals %}
+                            <article class="menu-card">
+                                <div class="menu-card-head">
+                                    <h4>{{purchased_meal.dish.name}}</h4>
+                                    <span class="menu-price">{{purchased_meal.key}}</span>
+                                </div>
+                            </article>
+                            {% endfor %}
                         </div>
                     </section>
+
                     <section class="card" id="profile">
                         <h3>Аллергии и предпочтения</h3>
                         <form action="{% url "student:allergy_indication" %}" method="post">
@@ -149,7 +151,7 @@
         </main>
     </div>
 
-    <script>
+    {% comment %} <script>
         document.addEventListener('DOMContentLoaded', () => {
             const buttons = document.querySelectorAll('.menu-filters .btn');
             const cards = document.querySelectorAll('.menu-card');
@@ -175,7 +177,7 @@
                 applyFilter(initial.dataset.filter);
             }
         });
-    </script>
+    </script> {% endcomment %}
 
 </body>
 

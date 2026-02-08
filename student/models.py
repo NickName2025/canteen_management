@@ -1,5 +1,7 @@
 from django.db import models
 
+from users.models import User
+
 
 class Dishes(models.Model):
     name = models.CharField(max_length=150, unique=True, verbose_name='Название')
@@ -41,3 +43,19 @@ class Reviews(models.Model):
 
     def __str__(self):
         return f"{self.dish_name} | {self.estimation}"
+    
+
+class PurchasedMeals(models.Model):
+    user = models.ForeignKey(to=User, on_delete=models.CASCADE, blank=True, null=True, verbose_name='Пользователь')
+    dish = models.ForeignKey(to=Dishes, on_delete=models.CASCADE, verbose_name='Блюдо')
+    key = models.CharField(verbose_name='Ключ')
+    created_timestamp = models.DateTimeField(auto_now_add=True, verbose_name='Дата добавления')
+
+    class Meta:
+        db_table = 'purchased_meals'
+        verbose_name = 'Купленное блюдо'
+        verbose_name_plural = 'Купленные блюда'
+        ordering = ("id", )
+
+    def __str__(self):
+        return f'Корзина {self.user.username} | Товар {self.dish.name} | Ключ {self.key}'
