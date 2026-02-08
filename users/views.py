@@ -23,6 +23,8 @@ def login(request):
                     return HttpResponseRedirect(reverse('student:student'))
                 elif user.type == "chef":
                     return HttpResponseRedirect(reverse('chef:chef'))
+                elif user.type == "administrator":
+                    return HttpResponseRedirect(reverse('administrator:administrator'))
     else:
         form = UserLoginForm()
 

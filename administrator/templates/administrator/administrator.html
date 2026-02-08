@@ -1,0 +1,70 @@
+{% load static %}
+
+<!doctype html>
+<html lang="ru">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Умная столовая — кабинет администратора</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&family=Yeseva+One&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="{% static "css/style.css" %}" />
+</head>
+
+<body>
+    <div class="app">
+        <div class="exit-row">
+            <div class="container">
+                <a class="btn btn-outline" href="login.html">Выйти</a>
+            </div>
+        </div>
+
+        <main class="section">
+            <div class="container">
+                <div class="dashboard-head">
+                    <h2>Кабинет администратора</h2>
+                </div>
+
+                <div class="panel-grid">
+                                        <section class="card col-8" id="stats">
+                        <h3>Статистика оплат и посещаемости</h3>
+                        <div class="kpi-grid">
+                            <div class="kpi">
+                                <p class="kpi-title">Оплаты</p>
+                                <p class="kpi-value">—</p>
+                            </div>
+                            <div class="kpi">
+                                <p class="kpi-title">Посещаемость</p>
+                                <p class="kpi-value">—</p>
+                            </div>
+                        </div>
+                    </section>
+
+                                                            <section class="card col-4" id="approvals">
+                        <h3>Согласование заявок</h3>
+                        <div class="menu-card">
+                            <h4>Заявка №214</h4>
+                            <div class="menu-actions">
+                                <button class="btn" type="button">Принять</button>
+                                <button class="btn btn-outline" type="button">Отклонить</button>
+                            </div>
+                        </div>
+                    </section>
+
+                                        <section class="card col-5" id="reports">
+                        <h3>Отчет по питанию</h3>
+                        <form class="form">
+                            <button class="btn" type="button">Сформировать отчет</button>
+                        </form>
+                    </section>
+
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+
+</html>
