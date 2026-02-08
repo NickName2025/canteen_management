@@ -151,7 +151,7 @@
         </main>
     </div>
 
-    {% comment %} <script>
+    <script>
         document.addEventListener('DOMContentLoaded', () => {
             const buttons = document.querySelectorAll('.menu-filters .btn');
             const cards = document.querySelectorAll('.menu-card');
@@ -159,7 +159,7 @@
             const applyFilter = (filter) => {
                 cards.forEach(card => {
                     const show = card.dataset.category === filter;
-                    card.style.display = show ? '' : 'none';
+                    // card.style.display = show ? '' : 'none';
                 });
             };
 
@@ -177,7 +177,7 @@
                 applyFilter(initial.dataset.filter);
             }
         });
-    </script> {% endcomment %}
+    </script>
 
 </body>
 

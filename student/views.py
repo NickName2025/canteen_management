@@ -2,6 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
 
 from student.models import Dishes, Reviews, PurchasedMeals
+from chef.models import DishesServed
 
 def student(request):
     print("student")
@@ -52,8 +53,11 @@ def getting_meals(request):
         code = request.POST.get("receipt_code")
 
         obj = PurchasedMeals.objects.all().filter(key=code)
+        dishes_served = DishesServed.objects.all()
 
         if obj:
+            print(obj)
+            dishes_served.create(user=request.user, dish_name=obj.first().dish.name)
             obj[0].delete()
         else:
             print("Not found")

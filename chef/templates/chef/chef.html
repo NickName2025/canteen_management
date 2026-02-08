@@ -36,18 +36,12 @@
                                 <span>Ученик</span>
                                 <span>Блюдо</span>
                             </div>
-                            <div class="grid-row">
-                                <span>Иванов Артём</span>
-                                <span>Каша овсяная</span>
-                            </div>
-                            <div class="grid-row">
-                                <span>Петрова Мария</span>
-                                <span>Сырники</span>
-                            </div>
-                            <div class="grid-row">
-                                <span>Сидоров Илья</span>
-                                <span>Паста с овощами</span>
-                            </div>
+                            {% for dish_served in dishes_served %}
+                                <div class="grid-row">
+                                    <span>{{dish_served.user.username}}</span>
+                                    <span>{{dish_served.dish_name}}</span>
+                                </div>
+                            {% endfor %}
                         </div>
                     </section>
 
@@ -60,94 +54,26 @@
                         <div class="chef-tabs">
                             <div class="chef-panel is-active" data-chef-panel="products">
                                 <div class="menu-cards">
-                                    <article class="menu-card">
-                                        <div class="menu-card-head">
-                                            <h4>Молоко 3,2%</h4>
-                                            <span class="menu-price">28 л</span>
-                                        </div>
-                                    </article>
-                                    <article class="menu-card">
-                                        <div class="menu-card-head">
-                                            <h4>Куриное филе</h4>
-                                            <span class="menu-price">18 кг</span>
-                                        </div>
-                                    </article>
-                                    <article class="menu-card">
-                                        <div class="menu-card-head">
-                                            <h4>Яйца куриные</h4>
-                                            <span class="menu-price">120 шт</span>
-                                        </div>
-                                    </article>
-                                    <article class="menu-card">
-                                        <div class="menu-card-head">
-                                            <h4>Творог</h4>
-                                            <span class="menu-price">15 кг</span>
-                                        </div>
-                                    </article>
-                                    <article class="menu-card">
-                                        <div class="menu-card-head">
-                                            <h4>Овощная смесь</h4>
-                                            <span class="menu-price">24 кг</span>
-                                        </div>
-                                    </article>
-                                    <article class="menu-card">
-                                        <div class="menu-card-head">
-                                            <h4>Хлеб цельнозерновой</h4>
-                                            <span class="menu-price">60 шт</span>
-                                        </div>
-                                    </article>
-                                    <article class="menu-card">
-                                        <div class="menu-card-head">
-                                            <h4>Масло сливочное</h4>
-                                            <span class="menu-price">12 кг</span>
-                                        </div>
-                                    </article>
+                                    {% for product in products %}
+                                        <article class="menu-card">
+                                            <div class="menu-card-head">
+                                                <h4>{{ product.name }}</h4>
+                                                <span class="menu-price">{{ product.quantity }} {{ product.units_of_measurement }}</span>
+                                            </div>
+                                        </article>
+                                    {% endfor %}
                                 </div>
                             </div>
                             <div class="chef-panel" data-chef-panel="ready">
                                 <div class="menu-cards">
-                                    <article class="menu-card">
-                                        <div class="menu-card-head">
-                                            <h4>Каша овсяная</h4>
-                                            <span class="menu-price">40 порций</span>
-                                        </div>
-                                    </article>
-                                    <article class="menu-card">
-                                        <div class="menu-card-head">
-                                            <h4>Паста с овощами</h4>
-                                            <span class="menu-price">32 порции</span>
-                                        </div>
-                                    </article>
-                                    <article class="menu-card">
-                                        <div class="menu-card-head">
-                                            <h4>Суп куриный</h4>
-                                            <span class="menu-price">26 порций</span>
-                                        </div>
-                                    </article>
-                                    <article class="menu-card">
-                                        <div class="menu-card-head">
-                                            <h4>Сырники</h4>
-                                            <span class="menu-price">30 порций</span>
-                                        </div>
-                                    </article>
-                                    <article class="menu-card">
-                                        <div class="menu-card-head">
-                                            <h4>Рис с овощами</h4>
-                                            <span class="menu-price">22 порции</span>
-                                        </div>
-                                    </article>
-                                    <article class="menu-card">
-                                        <div class="menu-card-head">
-                                            <h4>Тефтели в соусе</h4>
-                                            <span class="menu-price">18 порций</span>
-                                        </div>
-                                    </article>
-                                    <article class="menu-card">
-                                        <div class="menu-card-head">
-                                            <h4>Компот ягодный</h4>
-                                            <span class="menu-price">50 порций</span>
-                                        </div>
-                                    </article>
+                                    {% for dish in dishes %}
+                                        <article class="menu-card">
+                                            <div class="menu-card-head">
+                                                <h4>{{ dish.name }}</h4>
+                                                <span class="menu-price">{{ dish.quantity }} ед</span>
+                                            </div>
+                                        </article>
+                                    {% endfor %}
                                 </div>
                             </div>
                         </div>
@@ -155,22 +81,22 @@
 
                     <section class="card col-6" id="request">
                         <h3>Заявка на закупку</h3>
-                        <form class="form">
+                        <form action="{% url "chef:create_a_request" %}" method="post">
+                            {% csrf_token %}
                             <div class="field">
                                 <span>Продукт</span>
                                 <select name="request_item" aria-label="Продукт">
-                                    <option>Крупа гречневая</option>
-                                    <option>Рис</option>
-                                    <option>Макароны</option>
-                                    <option>Молоко</option>
-                                    <option>Куриное филе</option>
+                                    {% for name, units_of_measurement in list_of_possible_products %}
+                                        <option>{{name}}</option>
+                                    {% endfor %}
+                                    
                                 </select>
                             </div>
                             <div class="field">
                                 <span>Количество</span>
-                                <input type="text" name="request_amount" placeholder="10 кг" aria-label="Количество" />
+                                <input type="text" name="request_amount" placeholder="Кол-во" aria-label="Количество" />
                             </div>
-                            <button class="btn" type="button">Отправить заявку</button>
+                            <button class="btn" type="submit">Отправить заявку</button>
                         </form>
                     </section>
                 </div>
