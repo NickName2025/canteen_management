@@ -38,23 +38,25 @@
                             </div>
                             <div class="kpi">
                                 <p class="kpi-title">Посещаемость</p>
-                                <p class="kpi-value">{{ num_of_users }}</p>
+                                <p class="kpi-value">{{ num_of_users }} ученик</p>
                             </div>
                         </div>
                     </section>
 
                     <section class="card col-4" id="approvals">
                         <h3>Согласование заявок</h3>
-                        <div class="menu-card">
+                        <div class="menu-cards">
                             {% for purchase_request in purchase_requests %}
-                                <h4>Заявка №{{purchase_request.id}}</h4>
-                                <h3>{{purchase_request.product_name}} - {{purchase_request.product_quantity}} {{purchase_request.units_of_measurement}}</h3>
-                                <div class="menu-actions">
-                                    <button class="btn" type="button"><a href="{% url "administrator:changing_the_request_status" purchase_request.id 1 %}">Принять</a></button>
-                                    <button class="btn btn-outline" type="button"><a href="{% url "administrator:changing_the_request_status" purchase_request.id 0 %}">Отклонить</a></button>
+                                <div class="menu-card">
+                                    <h4>Заявка №{{purchase_request.id}}</h4>
+                                    <h3>{{purchase_request.product_name}} - {{purchase_request.product_quantity}} {{purchase_request.units_of_measurement}}</h3>
+                                    <div class="menu-actions">
+                                        <button class="btn" type="button"><a href="{% url "administrator:changing_the_request_status" purchase_request.id 1 %}">Принять</a></button>
+                                        <button class="btn btn-outline" type="button"><a href="{% url "administrator:changing_the_request_status" purchase_request.id 0 %}">Отклонить</a></button>
+                                    </div>
                                 </div>
                             {% endfor %}
-                        </div>
+                        <div class="menu-cards">
                     </section>
 
                                         <section class="card col-5" id="reports">

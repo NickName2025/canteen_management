@@ -3,10 +3,12 @@ from django.shortcuts import redirect, render
 
 from student.models import Dishes, Reviews, PurchasedMeals
 from chef.models import DishesServed
+from carts.models import Cart
 
 def student(request):
     print("student")
     dishes = Dishes.objects.all()
+    carts = Cart.objects.all()
     purchased_meals = PurchasedMeals.objects.all().filter(user=request.user)
     not_issued_purchased_meals = purchased_meals.exclude(key="-")
 
@@ -23,6 +25,7 @@ def student(request):
 
     context = {
         "dishes": dishes,
+        "carts": carts,
         "purchased_meals": purchased_meals,
         "not_issued_purchased_meals": not_issued_purchased_meals
     }

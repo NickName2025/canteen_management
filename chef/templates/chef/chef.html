@@ -30,7 +30,7 @@
 
                 <div class="panel-grid">
                     <section class="card col-8" id="issue">
-                        <h3>Учёт выдачи блюд</h3>
+                        <h3>Учёт выданных блюд</h3>
                         <div class="grid-table">
                             <div class="grid-row head">
                                 <span>Ученик</span>
@@ -81,7 +81,7 @@
 
                     <section class="card col-6" id="request">
                         <h3>Заявка на закупку</h3>
-                        <form action="{% url "chef:create_a_request" %}" method="post">
+                        <form action="{% url "chef:create_a_request" %}" method="post" class="form">
                             {% csrf_token %}
                             <div class="field">
                                 <span>Продукт</span>

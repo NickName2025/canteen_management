@@ -30,7 +30,7 @@
                 <div class="auth-views">
                     <section class="auth-card is-active" id="login">
                         <h2>Авторизация</h2>
-                        <form action="{% url "user:login" %}" method="post">
+                        <form action="{% url "user:login" %}" method="post" class="form">
                             {% csrf_token %}
                             <div class="field">
                                 <label for="id_username" class="form-label">Логин</label>

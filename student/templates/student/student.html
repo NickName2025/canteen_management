@@ -52,15 +52,31 @@
                         </div>
                     </section>
 
-                    {% user_carts request as carts %}
-                    {% include "carts/includes/cart.html" %}
+                    <section class="card" id="cart">
+                        <h3>Корзина</h3>
+                        <div class="order">
+                            <div class="menu-cards">
+                                {% for cart in carts %}
+                                    <div class="menu-card-head">
+                                        <h4>{{ cart.dish.name }}</h4>
+                                        <span class="menu-price">{{ cart.quantity }} товар(а)</span>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                            <div class="order-total">
+                                <span>Итого <strong>{{ carts.total_quantity }} товар(а)</strong></span>
+                                <span><strong>на сумму {{ carts.total_price }} ₽</strong></span>
+                            </div>
+                            <button class="btn" type="button"><a href="{% url "cart:place_an_order" %}">Оформить заказ</a></button>
+                        </div>
+                    </section>
 
                     <section class="card" id="issue">
                         <h3>Получение питания</h3>
                         <form action="{% url "student:getting_meals" %}" method="post">
                             {% csrf_token %}
                             <div class="field">
-                                <input type="text" name="receipt_code" class="form-control"/>
+                                <input type="text" name="receipt_code" class="form-control" placeholder="Введите код"/>
                             </div>
                             <button class="btn" type="sumbit">Отметить получение</button>
                         </form>

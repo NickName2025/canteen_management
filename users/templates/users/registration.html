@@ -30,14 +30,14 @@
                 <div class="auth-views">
                     <section class="auth-card is-active" id="register">
                         <h2>Создание аккаунта</h2>
-                        <form action="{% url "user:registration" %}" method="post">
+                        <form action="{% url "user:registration" %}" method="post" class="form">
                             {% csrf_token %}
                             <div class="field">
                                 <label for="id_fio" class="form-label">ФИО</label>
                                 <input type="text" class="form-control" id="id_fio"
                                     value="{% if form.fio.value %}{{form.fio.value}}{% endif %}"
                                     name = "fio"
-                                    placeholder="ФИО" required>
+                                    placeholder="Введите ФИО" required>
                                     {% if form.fio.errors %}
                                     <div class="alert alert-danger alert-dismissible fade show">{{form.fio.errors}}</div>
                                     {% endif %}
@@ -47,7 +47,7 @@
                                 <input type="text" class="form-control" id="id_school_class"
                                     value="{% if form.school_class.value %}{{form.school_class.value}}{% endif %}"
                                     name = "school_class"
-                                    placeholder="Класс" required>
+                                    placeholder="Введите класс" required>
                                     {% if form.school_class.errors %}
                                     <div class="alert alert-danger alert-dismissible fade show">{{form.school_class.errors}}</div>
                                     {% endif %}
@@ -63,7 +63,7 @@
                                     {% endif %}
                             </div>
                             <div class="field">
-                                <label for="id_password1" class="form-label">Логин</label>
+                                <label for="id_password1" class="form-label">Пароль</label>
                                 <input type="password" class="form-control" id="id_password1"
                                     value="{% if form.password1.value %}{{form.password1.value}}{% endif %}"
                                     name = "password1"
@@ -73,7 +73,7 @@
                                     {% endif %}
                             </div>
                             <div class="field">
-                                <label for="id_password2" class="form-label">Логин</label>
+                                <label for="id_password2" class="form-label">Пароль</label>
                                 <input type="password" class="form-control" id="id_password2"
                                     value="{% if form.password2.value %}{{form.password2.value}}{% endif %}"
                                     name = "password2"
@@ -82,6 +82,7 @@
                                     <div class="alert alert-danger alert-dismissible fade show">{{form.password2.errors}}</div>
                                     {% endif %}
                             </div>
+
                             <button class="btn btn-soft" type="submit">Создать аккаунт</button>
                         </form>
                     </section>

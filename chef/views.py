@@ -13,7 +13,7 @@ def chef(request):
     dishes = Dishes.objects.all()
     products = Products.objects.all()
 
-    list_of_possible_products = products.first().get_list_of_possible_products()
+    list_of_possible_products = get_list_of_possible_products()
 
 
     context = {
@@ -26,8 +26,6 @@ def chef(request):
     return render(request, "chef/chef.html", context)
 
 def create_a_request(request):
-    print(Products.objects.all().first().get_list_of_possible_products())
-
     if request.method == 'POST':
         request_item = request.POST.get("request_item").split(" - ")
         PurchaseRequests.objects.create(product_name=request_item[0], product_quantity=request.POST.get("request_amount"), units_of_measurement=request_item[1])
