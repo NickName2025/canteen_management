@@ -5,12 +5,10 @@
     <div class="order">
         <div class="menu-cards">
             {% for cart in carts %}
-                <article class="menu-card">
-                    <div class="menu-card-head">
-                        <h4>{{ cart.dish.name }}</h4>
-                        <span class="menu-price">{{ cart.quantity }} товар(а)</span>
-                    </div>
-                </article>
+                <div class="menu-card-head">
+                    <h4>{{ cart.dish.name }}</h4>
+                    <span class="menu-price">{{ cart.quantity }} товар(а)</span>
+                </div>
             {% endfor %}
         </div>
         <div class="order-total">

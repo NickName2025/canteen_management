@@ -49,7 +49,7 @@ class Reviews(models.Model):
 class PurchasedMeals(models.Model):
     user = models.ForeignKey(to=User, on_delete=models.CASCADE, blank=True, null=True, verbose_name='Пользователь')
     dish = models.ForeignKey(to=Dishes, on_delete=models.CASCADE, verbose_name='Блюдо')
-    key = models.CharField(verbose_name='Ключ')
+    key = models.CharField(max_length=150,verbose_name='Ключ')
     paid_for = models.DecimalField(default=0.00, max_digits=7, decimal_places=2, verbose_name='Заплачено ₽')
     created_timestamp = models.DateTimeField(auto_now_add=True, verbose_name='Дата добавления')
 

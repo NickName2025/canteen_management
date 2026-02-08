@@ -5,7 +5,7 @@ from users.models import User
 
 class DishesServed(models.Model):
     user = models.ForeignKey(to=User, on_delete=models.CASCADE, blank=True, null=True, verbose_name='Пользователь')
-    dish_name = models.CharField(verbose_name='Блюдо')
+    dish_name = models.CharField(max_length=150, verbose_name='Блюдо')
     created_timestamp = models.DateTimeField(auto_now_add=True, verbose_name='Дата добавления')
 
     class Meta:
@@ -22,7 +22,7 @@ class Products(models.Model):
     name = models.CharField(max_length=150, unique=True, verbose_name='Название')
     slug = models.SlugField(max_length=200, unique=True, blank=True, null=True, verbose_name='URL')
     quantity = models.PositiveIntegerField(default=0, verbose_name='Количество')
-    units_of_measurement = models.CharField(verbose_name='Еденицы измерения')
+    units_of_measurement = models.CharField(max_length=150, verbose_name='Еденицы измерения')
 
     class Meta:
         db_table = 'products'
@@ -40,7 +40,7 @@ class Products(models.Model):
 class PurchaseRequests(models.Model):
     product_name = models.CharField(max_length=150, verbose_name='Название продукта')
     product_quantity = models.PositiveIntegerField(default=0, verbose_name='Количество продукта')
-    units_of_measurement = models.CharField(verbose_name='Еденицы измерения')
+    units_of_measurement = models.CharField(max_length=150,verbose_name='Еденицы измерения')
     status = models.BooleanField(default=False, verbose_name='Статус (принято)')
     rejected = models.BooleanField(default=False, verbose_name='Отклонено')
 

@@ -14,16 +14,20 @@ def cart_add(request, dish_slug, dish_price, dish_quantity):
     if request.user.is_authenticated:
         carts = Cart.objects.filter(user=request.user, dish=dish)
 
-        if carts.exists():
-            cart = carts.first()
-            if cart:
-                print(dish_price)
-                cart.final_prices += str(float(dish_price)*dish_quantity) + "|"
-                print(cart.final_prices)
-                cart.quantity += dish_quantity
-                cart.save()
-        else:
-            Cart.objects.create(user=request.user, dish=dish, quantity=dish_quantity, final_prices=str(float(dish_price)*dish_quantity)+"|")
+        if dish_quantity <= dish.quantity:
+            dish.quantity -= dish_quantity
+            dish.save()
+
+            if carts.exists():
+                cart = carts.first()
+                if cart:
+                    print(dish_price)
+                    cart.final_prices += str(float(dish_price)*dish_quantity) + "|"
+                    print(cart.final_prices)
+                    cart.quantity += dish_quantity
+                    cart.save()
+            else:
+                Cart.objects.create(user=request.user, dish=dish, quantity=dish_quantity, final_prices=str(float(dish_price)*dish_quantity)+"|")
 
     return redirect(request.META['HTTP_REFERER'])
 
@@ -48,9 +52,8 @@ def place_an_order(request):
                     paid_for = round(float(cart.final_prices.split("|")[:-1][total_i]), 2)
                     print("paid_for", paid_for)
 
-                    total_i += 1
-
                     PurchasedMeals.objects.create(user=request.user, dish=cart.dish, key=key, paid_for=paid_for)
+                total_i += 1
                 cart.delete()
 
     return redirect(request.META['HTTP_REFERER'])

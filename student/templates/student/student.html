@@ -70,12 +70,10 @@
                         <h3>Купленные блюда и коды выдачи</h3>
                         <div class="menu-cards">
                             {% for purchased_meal in not_issued_purchased_meals %}
-                            <article class="menu-card">
                                 <div class="menu-card-head">
                                     <h4>{{purchased_meal.dish.name}}</h4>
                                     <span class="menu-price">{{purchased_meal.key}}</span>
                                 </div>
-                            </article>
                             {% endfor %}
                         </div>
                     </section>
@@ -159,7 +157,7 @@
             const applyFilter = (filter) => {
                 cards.forEach(card => {
                     const show = card.dataset.category === filter;
-                    // card.style.display = show ? '' : 'none';
+                    card.style.display = show ? '' : 'none';
                 });
             };
 
