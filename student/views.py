@@ -17,7 +17,7 @@ def student(request):
     if request.POST.get("Sugar_free") is not None:
         dishes = dishes.exclude(is_sugar=True)
     if request.POST.get("Vegetarian") is not None:
-        dishes = dishes.exclude(is_vegetarian=True)
+        dishes = dishes.filter(is_vegetarian=True)
 
     # exclude
 
