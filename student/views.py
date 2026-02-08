@@ -6,9 +6,9 @@ from chef.models import DishesServed
 from carts.models import Cart
 
 def student(request):
-    print("student")
     dishes = Dishes.objects.all()
     carts = Cart.objects.all()
+    user = request.user
     purchased_meals = PurchasedMeals.objects.all().filter(user=request.user)
     not_issued_purchased_meals = purchased_meals.exclude(key="-")
 
@@ -26,6 +26,7 @@ def student(request):
     context = {
         "dishes": dishes,
         "carts": carts,
+        "users": user,
         "purchased_meals": purchased_meals,
         "not_issued_purchased_meals": not_issued_purchased_meals
     }
@@ -34,11 +35,30 @@ def student(request):
 
 @login_required
 def allergy_indication(request):
-    if request.method == 'POST':
-        print(request.POST.get("Gluten_free"))
-        print(request.POST.get("Lactose_free"))
+    dishes = Dishes.objects.all()
+    carts = Cart.objects.all()
+    user = request.user
+    purchased_meals = PurchasedMeals.objects.all().filter(user=request.user)
+    not_issued_purchased_meals = purchased_meals.exclude(key="-")
 
-    return render(request, "student/student.html")
+    if request.method == 'POST':
+
+        user.intolerant_of_glucose = bool(request.POST.get("Gluten_free"))
+        user.intolerant_of_lactose = bool(request.POST.get("Lactose_free"))
+        user.intolerant_of_sugar = bool(request.POST.get("Sugar_free"))
+        user.intolerant_of_vegetarian = bool(request.POST.get("Vegetarian"))
+
+        user.save()
+
+    context = {
+        "dishes": dishes,
+        "carts": carts,
+        "users": user,
+        "purchased_meals": purchased_meals,
+        "not_issued_purchased_meals": not_issued_purchased_meals
+    }
+
+    return render(request, "student/student.html", context)
 
 @login_required
 def sending_reviews(request):
