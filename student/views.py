@@ -8,6 +8,7 @@ def student(request):
     print("student")
     dishes = Dishes.objects.all()
     purchased_meals = PurchasedMeals.objects.all().filter(user=request.user)
+    not_issued_purchased_meals = purchased_meals.exclude(key="-")
 
     if request.POST.get("Gluten_free") is not None:
         dishes = dishes.exclude(is_glucose=True)
@@ -22,7 +23,8 @@ def student(request):
 
     context = {
         "dishes": dishes,
-        "purchased_meals": purchased_meals
+        "purchased_meals": purchased_meals,
+        "not_issued_purchased_meals": not_issued_purchased_meals
     }
 
     return render(request, "student/student.html", context)
@@ -58,7 +60,8 @@ def getting_meals(request):
         if obj:
             print(obj)
             dishes_served.create(user=request.user, dish_name=obj.first().dish.name)
-            obj[0].delete()
+            obj.first().key = "-"
+            obj.first().save()
         else:
             print("Not found")
 

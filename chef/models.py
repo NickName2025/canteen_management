@@ -35,3 +35,20 @@ class Products(models.Model):
     
     def get_list_of_possible_products(self):
         return [("мука пшеничная", "кг"), ("вода", "л"), ("сахар", "кг"), ("растительное масло", "л"), ("сливочное масло", "г")]
+    
+
+class PurchaseRequests(models.Model):
+    product_name = models.CharField(max_length=150, verbose_name='Название продукта')
+    product_quantity = models.PositiveIntegerField(default=0, verbose_name='Количество продукта')
+    units_of_measurement = models.CharField(verbose_name='Еденицы измерения')
+    status = models.BooleanField(default=False, verbose_name='Статус (принято)')
+    rejected = models.BooleanField(default=False, verbose_name='Отклонено')
+
+    class Meta:
+        db_table = 'purchase_requests'
+        verbose_name = 'Заявка на покупку'
+        verbose_name_plural = 'Заявки на покупку'
+        ordering = ("id", )
+    
+    def __str__(self):
+        return f"{self.product_name} Количество - {self.product_quantity} {self.units_of_measurement} Статус: {self.status}"

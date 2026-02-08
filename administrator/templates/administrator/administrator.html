@@ -18,7 +18,7 @@
     <div class="app">
         <div class="exit-row">
             <div class="container">
-                <a class="btn btn-outline" href="login.html">Выйти</a>
+                <a class="btn btn-outline" href="{% url "user:logout" %}">Выйти</a>
             </div>
         </div>
 
@@ -29,35 +29,38 @@
                 </div>
 
                 <div class="panel-grid">
-                                        <section class="card col-8" id="stats">
+                    <section class="card col-8" id="stats">
                         <h3>Статистика оплат и посещаемости</h3>
                         <div class="kpi-grid">
                             <div class="kpi">
                                 <p class="kpi-title">Оплаты</p>
-                                <p class="kpi-value">—</p>
+                                <p class="kpi-value">{{ money_received }} ₽</p>
                             </div>
                             <div class="kpi">
                                 <p class="kpi-title">Посещаемость</p>
-                                <p class="kpi-value">—</p>
+                                <p class="kpi-value">{{ num_of_users }}</p>
                             </div>
                         </div>
                     </section>
 
-                                                            <section class="card col-4" id="approvals">
+                    <section class="card col-4" id="approvals">
                         <h3>Согласование заявок</h3>
                         <div class="menu-card">
-                            <h4>Заявка №214</h4>
-                            <div class="menu-actions">
-                                <button class="btn" type="button">Принять</button>
-                                <button class="btn btn-outline" type="button">Отклонить</button>
-                            </div>
+                            {% for purchase_request in purchase_requests %}
+                                <h4>Заявка №{{purchase_request.id}}</h4>
+                                <h3>{{purchase_request.product_name}} - {{purchase_request.product_quantity}} {{purchase_request.units_of_measurement}}</h3>
+                                <div class="menu-actions">
+                                    <button class="btn" type="button"><a href="{% url "administrator:changing_the_request_status" purchase_request.id 1 %}">Принять</a></button>
+                                    <button class="btn btn-outline" type="button"><a href="{% url "administrator:changing_the_request_status" purchase_request.id 0 %}">Отклонить</a></button>
+                                </div>
+                            {% endfor %}
                         </div>
                     </section>
 
                                         <section class="card col-5" id="reports">
-                        <h3>Отчет по питанию</h3>
+                        <h3>Отчет по питанию и затратам</h3>
                         <form class="form">
-                            <button class="btn" type="button">Сформировать отчет</button>
+                            <button class="btn" type="button"><a href="{% url "administrator:generate_report" %}">Сформировать отчет</a></button>
                         </form>
                     </section>
 

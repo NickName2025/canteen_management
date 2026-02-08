@@ -32,6 +32,8 @@ def cart_remove(request, dish_slug):
 def place_an_order(request):
     if request.user.is_authenticated:
         carts = Cart.objects.filter(user=request.user)
+
+        total_i = 0
         
         if carts.exists():
             for cart in carts:
@@ -42,7 +44,12 @@ def place_an_order(request):
                     for l in range(4):
                         key += s[randint(0, len(s) - 1)]
 
-                    PurchasedMeals.objects.create(user=request.user, dish=cart.dish, key=key)
+                    paid_for = round(float(cart.final_prices.split("|")[:-1][total_i]), 2)
+                    print("paid_for", paid_for)
+
+                    total_i += 1
+
+                    PurchasedMeals.objects.create(user=request.user, dish=cart.dish, key=key, paid_for=paid_for)
                 cart.delete()
 
     return redirect(request.META['HTTP_REFERER'])

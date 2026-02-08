@@ -69,7 +69,7 @@
                     <section class="card" id="purchased">
                         <h3>Купленные блюда и коды выдачи</h3>
                         <div class="menu-cards">
-                            {% for purchased_meal in purchased_meals %}
+                            {% for purchased_meal in not_issued_purchased_meals %}
                             <article class="menu-card">
                                 <div class="menu-card-head">
                                     <h4>{{purchased_meal.dish.name}}</h4>

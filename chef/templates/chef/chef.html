@@ -18,7 +18,7 @@
     <div class="app">
         <div class="exit-row">
             <div class="container">
-                <a class="btn btn-outline" href="login.html">Выйти</a>
+                <a class="btn btn-outline" href="{% url "user:logout" %}">Выйти</a>
             </div>
         </div>
 
@@ -87,7 +87,7 @@
                                 <span>Продукт</span>
                                 <select name="request_item" aria-label="Продукт">
                                     {% for name, units_of_measurement in list_of_possible_products %}
-                                        <option>{{name}}</option>
+                                        <option>{{name}} - {{units_of_measurement}}</option>
                                     {% endfor %}
                                     
                                 </select>

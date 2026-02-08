@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
 
-from chef.models import DishesServed, Products
+from chef.models import DishesServed, Products, PurchaseRequests
 from student.models import Dishes
 
 
@@ -26,7 +26,8 @@ def create_a_request(request):
     print(Products.objects.all().first().get_list_of_possible_products())
 
     if request.method == 'POST':
-        print(request.POST.get("request_item"), request.POST.get("request_amount"))
+        request_item = request.POST.get("request_item").split(" - ")
+        PurchaseRequests.objects.create(product_name=request_item[0], product_quantity=request.POST.get("request_amount"), units_of_measurement=request_item[1])
 
     return redirect(request.META['HTTP_REFERER'])
     # dish = Dishes.objects.get(slug=dish_slug)
