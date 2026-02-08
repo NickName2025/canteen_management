@@ -6,8 +6,7 @@ from student.models import Dishes, Reviews, PurchasedMeals
 class DishesAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('name',)}
     list_display = ["name", "quantity", "price", "food_intake"]
-    list_editable = ["quantity"]
-    search_fields = []
+    list_editable = ["quantity", "price"]
     list_filter = ["name", "quantity", "price", "food_intake"]
 
     fields = [
@@ -16,7 +15,8 @@ class DishesAdmin(admin.ModelAdmin):
         ("is_glucose", "is_lactose", "is_sugar", "is_vegetarian"),
         "price",
         "quantity",
-        "food_intake"
+        "food_intake",
+        "units_of_measurement"
     ]
 
 @admin.register(Reviews)

@@ -33,9 +33,6 @@ class Products(models.Model):
     def __str__(self):
         return f"{self.name} Количество - {self.quantity} {self.units_of_measurement}"
     
-    def get_list_of_possible_products(self):
-        return [("мука пшеничная", "кг"), ("вода", "л"), ("сахар", "кг"), ("растительное масло", "л"), ("сливочное масло", "г")]
-    
 
 class PurchaseRequests(models.Model):
     product_name = models.CharField(max_length=150, verbose_name='Название продукта')

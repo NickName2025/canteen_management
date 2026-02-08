@@ -5,6 +5,9 @@ from chef.models import DishesServed, Products, PurchaseRequests
 from student.models import Dishes
 
 
+def get_list_of_possible_products():
+    return [("мука пшеничная", "кг"), ("вода", "л"), ("сахар", "кг"), ("растительное масло", "л"), ("сливочное масло", "г")]
+
 def chef(request):
     dishes_served = DishesServed.objects.all()
     dishes = Dishes.objects.all()

@@ -9,6 +9,7 @@ class Dishes(models.Model):
     price = models.DecimalField(default=0.00, max_digits=7, decimal_places=2, verbose_name='Цена')
     quantity = models.PositiveIntegerField(default=0, verbose_name='Количество')
     food_intake = models.CharField(max_length=150, verbose_name='Приём пищи')
+    units_of_measurement = models.CharField(max_length=150, verbose_name='Еденицы измерения')
 
     is_glucose = models.BooleanField(verbose_name="Есть глюкоза")
     is_lactose = models.BooleanField(verbose_name="Есть лактоза")
