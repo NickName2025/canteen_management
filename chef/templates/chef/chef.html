@@ -1,0 +1,207 @@
+{% load static %}
+
+<!doctype html>
+<html lang="ru">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Умная столовая — кабинет повара</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&family=Yeseva+One&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="{% static "css/style.css" %}" />
+</head>
+
+<body class="chef-page">
+    <div class="app">
+        <div class="exit-row">
+            <div class="container">
+                <a class="btn btn-outline" href="login.html">Выйти</a>
+            </div>
+        </div>
+
+        <main class="section">
+            <div class="container">
+                <div class="dashboard-head">
+                    <h2>Кабинет повара</h2>
+                </div>
+
+                <div class="panel-grid">
+                    <section class="card col-8" id="issue">
+                        <h3>Учёт выдачи блюд</h3>
+                        <div class="grid-table">
+                            <div class="grid-row head">
+                                <span>Ученик</span>
+                                <span>Блюдо</span>
+                            </div>
+                            <div class="grid-row">
+                                <span>Иванов Артём</span>
+                                <span>Каша овсяная</span>
+                            </div>
+                            <div class="grid-row">
+                                <span>Петрова Мария</span>
+                                <span>Сырники</span>
+                            </div>
+                            <div class="grid-row">
+                                <span>Сидоров Илья</span>
+                                <span>Паста с овощами</span>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="card col-4" id="inventory">
+                        <h3>Продукты и готовые блюда</h3>
+                        <div class="auth-switch chef-switch" role="tablist">
+                            <button class="btn btn-outline is-active" type="button" data-chef-tab="products">Продукты</button>
+                            <button class="btn btn-outline" type="button" data-chef-tab="ready">Готовые блюда</button>
+                        </div>
+                        <div class="chef-tabs">
+                            <div class="chef-panel is-active" data-chef-panel="products">
+                                <div class="menu-cards">
+                                    <article class="menu-card">
+                                        <div class="menu-card-head">
+                                            <h4>Молоко 3,2%</h4>
+                                            <span class="menu-price">28 л</span>
+                                        </div>
+                                    </article>
+                                    <article class="menu-card">
+                                        <div class="menu-card-head">
+                                            <h4>Куриное филе</h4>
+                                            <span class="menu-price">18 кг</span>
+                                        </div>
+                                    </article>
+                                    <article class="menu-card">
+                                        <div class="menu-card-head">
+                                            <h4>Яйца куриные</h4>
+                                            <span class="menu-price">120 шт</span>
+                                        </div>
+                                    </article>
+                                    <article class="menu-card">
+                                        <div class="menu-card-head">
+                                            <h4>Творог</h4>
+                                            <span class="menu-price">15 кг</span>
+                                        </div>
+                                    </article>
+                                    <article class="menu-card">
+                                        <div class="menu-card-head">
+                                            <h4>Овощная смесь</h4>
+                                            <span class="menu-price">24 кг</span>
+                                        </div>
+                                    </article>
+                                    <article class="menu-card">
+                                        <div class="menu-card-head">
+                                            <h4>Хлеб цельнозерновой</h4>
+                                            <span class="menu-price">60 шт</span>
+                                        </div>
+                                    </article>
+                                    <article class="menu-card">
+                                        <div class="menu-card-head">
+                                            <h4>Масло сливочное</h4>
+                                            <span class="menu-price">12 кг</span>
+                                        </div>
+                                    </article>
+                                </div>
+                            </div>
+                            <div class="chef-panel" data-chef-panel="ready">
+                                <div class="menu-cards">
+                                    <article class="menu-card">
+                                        <div class="menu-card-head">
+                                            <h4>Каша овсяная</h4>
+                                            <span class="menu-price">40 порций</span>
+                                        </div>
+                                    </article>
+                                    <article class="menu-card">
+                                        <div class="menu-card-head">
+                                            <h4>Паста с овощами</h4>
+                                            <span class="menu-price">32 порции</span>
+                                        </div>
+                                    </article>
+                                    <article class="menu-card">
+                                        <div class="menu-card-head">
+                                            <h4>Суп куриный</h4>
+                                            <span class="menu-price">26 порций</span>
+                                        </div>
+                                    </article>
+                                    <article class="menu-card">
+                                        <div class="menu-card-head">
+                                            <h4>Сырники</h4>
+                                            <span class="menu-price">30 порций</span>
+                                        </div>
+                                    </article>
+                                    <article class="menu-card">
+                                        <div class="menu-card-head">
+                                            <h4>Рис с овощами</h4>
+                                            <span class="menu-price">22 порции</span>
+                                        </div>
+                                    </article>
+                                    <article class="menu-card">
+                                        <div class="menu-card-head">
+                                            <h4>Тефтели в соусе</h4>
+                                            <span class="menu-price">18 порций</span>
+                                        </div>
+                                    </article>
+                                    <article class="menu-card">
+                                        <div class="menu-card-head">
+                                            <h4>Компот ягодный</h4>
+                                            <span class="menu-price">50 порций</span>
+                                        </div>
+                                    </article>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="card col-6" id="request">
+                        <h3>Заявка на закупку</h3>
+                        <form class="form">
+                            <div class="field">
+                                <span>Продукт</span>
+                                <select name="request_item" aria-label="Продукт">
+                                    <option>Крупа гречневая</option>
+                                    <option>Рис</option>
+                                    <option>Макароны</option>
+                                    <option>Молоко</option>
+                                    <option>Куриное филе</option>
+                                </select>
+                            </div>
+                            <div class="field">
+                                <span>Количество</span>
+                                <input type="text" name="request_amount" placeholder="10 кг" aria-label="Количество" />
+                            </div>
+                            <button class="btn" type="button">Отправить заявку</button>
+                        </form>
+                    </section>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script>
+        (() => {
+            const switcher = document.querySelector(".chef-switch");
+            if (!switcher) return;
+            const buttons = switcher.querySelectorAll("[data-chef-tab]");
+            const panels = document.querySelectorAll(".chef-panel");
+
+            const activate = (name) => {
+                buttons.forEach((button) => {
+                    button.classList.toggle("is-active", button.dataset.chefTab === name);
+                });
+                panels.forEach((panel) => {
+                    panel.classList.toggle("is-active", panel.dataset.chefPanel === name);
+                });
+            };
+
+            buttons.forEach((button) => {
+                button.addEventListener("click", () => activate(button.dataset.chefTab));
+            });
+
+            if (buttons.length) {
+                activate(buttons[0].dataset.chefTab);
+            }
+        })();
+    </script>
+</body>
+
+</html>

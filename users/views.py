@@ -18,8 +18,11 @@ def login(request):
             if user:
                 auth.login(request, user)
                 print(f"{username}, Вы вошли в аккаунт")
-                    
-                return HttpResponseRedirect(reverse('student:student'))
+                
+                if user.type == "student":
+                    return HttpResponseRedirect(reverse('student:student'))
+                elif user.type == "chef":
+                    return HttpResponseRedirect(reverse('chef:chef'))
     else:
         form = UserLoginForm()
 
@@ -40,7 +43,7 @@ def registration(request):
 
             auth.login(request, user)
             print("Вы успешно зарегистрировались и вошли в аккаунт")
-
+            
             return HttpResponseRedirect(reverse('student:student'))
     else:
         form = UserRegistrationForm()
