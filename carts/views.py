@@ -8,7 +8,7 @@ from student.models import Dishes, PurchasedMeals
 
 # Create your views here.
 
-def cart_add(request, dish_slug, dish_price):
+def cart_add(request, dish_slug, dish_price, dish_quantity):
     dish = Dishes.objects.get(slug=dish_slug)
     
     if request.user.is_authenticated:
@@ -17,12 +17,13 @@ def cart_add(request, dish_slug, dish_price):
         if carts.exists():
             cart = carts.first()
             if cart:
-                cart.final_prices += dish_price + "|"
+                print(dish_price)
+                cart.final_prices += str(float(dish_price)*dish_quantity) + "|"
                 print(cart.final_prices)
-                cart.quantity += 1
+                cart.quantity += dish_quantity
                 cart.save()
         else:
-            Cart.objects.create(user=request.user, dish=dish, quantity=1, final_prices=dish_price+"|")
+            Cart.objects.create(user=request.user, dish=dish, quantity=dish_quantity, final_prices=str(float(dish_price)*dish_quantity)+"|")
 
     return redirect(request.META['HTTP_REFERER'])
 

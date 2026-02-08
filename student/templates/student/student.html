@@ -43,8 +43,8 @@
                                         <h4>{{ dish.name }} - {{ dish.quantity }} ед</h4>
                                     </div>
                                     <div class="menu-actions">
-                                        <button class="menu-qty-btn" type="button"><a href="{% url "cart:cart_add" dish.slug dish.price %}">+1 ({{ dish.price }} ₽/ед)</a></button>
-                                        <button class="menu-qty-btn" type="button"><a href="{% url "cart:cart_add" dish.slug dish.get_subscription_price %}">+5 ({{ dish.display_subscription_price }} ₽/ед)</a></button>
+                                        <button class="menu-qty-btn" type="button"><a href="{% url "cart:cart_add" dish.slug dish.price 1 %}">+1 ({{ dish.price }} ₽/ед)</a></button>
+                                        <button class="menu-qty-btn" type="button"><a href="{% url "cart:cart_add" dish.slug dish.get_subscription_price 5 %}">+5 ({{ dish.display_subscription_price }} ₽/ед)</a></button>
 
                                     </div>
                                 </article>
