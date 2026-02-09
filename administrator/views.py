@@ -11,7 +11,7 @@ def administrator(request):
     money_received = 0
 
     purchased_meals = PurchasedMeals.objects.all()
-    purchase_requests = PurchaseRequests.objects.all().exclude(status=True) & PurchaseRequests.objects.all().exclude(rejected=True)
+    purchase_requests = PurchaseRequests.objects.all().exclude(status=True) & PurchaseRequests.objects.all().exclude(rejected=True) & PurchaseRequests.objects.all().filter(in_process_of_adding=False)
     users = []
 
     print(purchased_meals, len(purchased_meals))

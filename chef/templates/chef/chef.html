@@ -81,7 +81,7 @@
 
                     <section class="card col-6" id="request">
                         <h3>Заявка на закупку</h3>
-                        <form action="{% url "chef:create_a_request" %}" method="post" class="form">
+                        <form action="{% url "chef:add_to_request" %}" method="post" class="form">
                             {% csrf_token %}
                             <div class="field">
                                 <span>Продукт</span>
@@ -95,7 +95,23 @@
                                 <span>Количество</span>
                                 <input type="text" name="request_amount" placeholder="Кол-во" aria-label="Количество" />
                             </div>
-                            <button class="btn" type="submit">Отправить заявку</button>
+
+                            <button class="btn" type="submit">Добавить в заявку</button>
+
+                            {% if current_request %}
+                                <div class="menu-cards">
+                                    <div class="menu-card">
+                                        <h4>Заявка № {{ current_request.id }}</h4>
+                                        <div>
+                                        {% for product_name, product_quantity, product_unit_of_measurement in current_request.get_list %}
+                                            <h3>{{ product_name }} - {{ product_quantity }} {{ product_unit_of_measurement }}</h3>
+                                        {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endif %}
+
+                            <button class="btn" type="submit"><a href={% url "chef:create_a_request" %}>Отправить заявку</a></button>
                         </form>
                     </section>
 
@@ -106,7 +122,11 @@
                                 {% for active_purchase_request in active_purchase_requests %}
                                     <div class="menu-card">
                                         <h4>Заявка №{{active_purchase_request.id}}</h4>
-                                        <h3>{{active_purchase_request.product_name}} - {{active_purchase_request.product_quantity}} {{active_purchase_request.units_of_measurement}}</h3>
+                                        <div>
+                                        {% for product_name, product_quantity, product_unit_of_measurement in active_purchase_request.get_list %}
+                                            <h3>{{ product_name }} - {{ product_quantity }} {{ product_unit_of_measurement }}</h3>
+                                        {% endfor %}
+                                        </div>
                                         <span>Статус - <strong><span style="color: rgb(230, 154, 54)">В обработке</span></strong></span>
                                     </div>
                                 {% endfor %}
@@ -117,7 +137,11 @@
                                     {% for processed_purchase_request in processed_purchase_requests %}
                                         <div class="menu-card">
                                             <h4>Заявка №{{processed_purchase_request.id}}</h4>
-                                            <h3>{{processed_purchase_request.product_name}} - {{processed_purchase_request.product_quantity}} {{processed_purchase_request.units_of_measurement}}</h3>
+                                            <div>
+                                        {% for product_name, product_quantity, product_unit_of_measurement in processed_purchase_request.get_list %}
+                                            <h3>{{ product_name }} - {{ product_quantity }} {{ product_unit_of_measurement }}</h3>
+                                        {% endfor %}
+                                        </div>
                                             <span>Статус - {% if processed_purchase_request.status %}<strong><span style="color: rgb(73, 173, 48)">Принято</span></strong>{% elif processed_purchase_request.rejected %}<strong><span style="color: rgb(230, 54, 54)">Отклонено</span></strong>{% endif %}</span>
                                         </div>
                                     {% endfor %}

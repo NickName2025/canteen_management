@@ -49,7 +49,11 @@
                             {% for purchase_request in purchase_requests %}
                                 <div class="menu-card">
                                     <h4>Заявка №{{purchase_request.id}}</h4>
-                                    <h3>{{purchase_request.product_name}} - {{purchase_request.product_quantity}} {{purchase_request.units_of_measurement}}</h3>
+                                    <div>
+                                        {% for product_name, product_quantity, product_unit_of_measurement in purchase_request.get_list %}
+                                            <h3>{{ product_name }} - {{ product_quantity }} {{ product_unit_of_measurement }}</h3>
+                                        {% endfor %}
+                                    </div>
                                     <div class="menu-actions">
                                         <button class="btn" type="button"><a href="{% url "administrator:changing_the_request_status" purchase_request.id 1 %}">Принять</a></button>
                                         <button class="btn btn-outline" type="button"><a href="{% url "administrator:changing_the_request_status" purchase_request.id 0 %}">Отклонить</a></button>
