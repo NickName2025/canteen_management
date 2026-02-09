@@ -6,24 +6,24 @@ from chef.models import DishesServed
 from carts.models import Cart
 
 def student(request):
+    reviews = Reviews.objects.all()
     dishes = Dishes.objects.all()
     carts = Cart.objects.all()
     user = request.user
     purchased_meals = PurchasedMeals.objects.all().filter(user=request.user)
     not_issued_purchased_meals = purchased_meals.exclude(key="-")
 
-    if request.POST.get("Gluten_free") is not None:
+    if user.intolerant_of_glucose:
         dishes = dishes.exclude(is_glucose=True)
-    if request.POST.get("Lactose_free") is not None:
+    if user.intolerant_of_lactose:
         dishes = dishes.exclude(is_lactose=True)
-    if request.POST.get("Sugar_free") is not None:
+    if user.intolerant_of_sugar:
         dishes = dishes.exclude(is_sugar=True)
-    if request.POST.get("Vegetarian") is not None:
+    if user.intolerant_of_vegetarian:
         dishes = dishes.filter(is_vegetarian=True)
 
-    # exclude
-
     context = {
+        "reviews": reviews,
         "dishes": dishes,
         "carts": carts,
         "users": user,
@@ -35,6 +35,7 @@ def student(request):
 
 @login_required
 def allergy_indication(request):
+    reviews = Reviews.objects.all()
     dishes = Dishes.objects.all()
     carts = Cart.objects.all()
     user = request.user
@@ -42,7 +43,6 @@ def allergy_indication(request):
     not_issued_purchased_meals = purchased_meals.exclude(key="-")
 
     if request.method == 'POST':
-
         user.intolerant_of_glucose = bool(request.POST.get("Gluten_free"))
         user.intolerant_of_lactose = bool(request.POST.get("Lactose_free"))
         user.intolerant_of_sugar = bool(request.POST.get("Sugar_free"))
@@ -50,7 +50,17 @@ def allergy_indication(request):
 
         user.save()
 
+        if user.intolerant_of_glucose:
+            dishes = dishes.exclude(is_glucose=True)
+        if user.intolerant_of_lactose:
+            dishes = dishes.exclude(is_lactose=True)
+        if user.intolerant_of_sugar:
+            dishes = dishes.exclude(is_sugar=True)
+        if user.intolerant_of_vegetarian:
+            dishes = dishes.filter(is_vegetarian=True)
+
     context = {
+        "reviews": reviews,
         "dishes": dishes,
         "carts": carts,
         "users": user,

@@ -102,25 +102,25 @@
                                 <div>
                                     <label class="form-label">Без глютена</label>
                                     <input type="checkbox" class="form-control" name="Gluten_free" value="Без глютена"
-                                    {% if request.POST.Gluten_free or user.intolerant_of_glucose %}checked{% endif %}/>
+                                    {% if user.intolerant_of_glucose %}checked{% endif %}/>
                                 </div>
 
                                 <div>
                                     <label class="form-label">Без лактозы</label>
                                     <input type="checkbox" class="form-control" name="Lactose_free" value="Без лактозы"
-                                    {% if request.POST.Lactose_free or user.intolerant_of_lactose %}checked{% endif %}/>
+                                    {% if user.intolerant_of_lactose %}checked{% endif %}/>
                                 </div>
 
                                 <div>
                                     <label class="form-label">Без сахара</label>
                                     <input type="checkbox" class="form-control" name="Sugar_free" value="Без сахара"
-                                    {% if request.POST.Sugar_free or user.intolerant_of_sugar %}checked{% endif %}/>
+                                    {% if user.intolerant_of_sugar %}checked{% endif %}/>
                                 </div>
 
                                 <div>
                                     <label class="form-label">Вегетарианское</label>
                                     <input type="checkbox" class="form-control" name="Vegetarian" value="Вегетарианское"
-                                    {% if request.POST.Vegetarian or user.intolerant_of_vegetarian %}checked{% endif %}/>
+                                    {% if user.intolerant_of_vegetarian %}checked{% endif %}/>
                                 </div>
                             </div>
                             <button class="btn" type="submit">Сохранить</button>
@@ -158,8 +158,10 @@
                             </div>
                             <button class="btn" type="submit">Отправить отзыв</button>
                         </form>
+                        {% for review in reviews %}
+                            <h4>{{ review.dish_name }}</h4>
+                        {% endfor %}
                     </section>
-
                 </div>
             </div>
         </main>
