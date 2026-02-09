@@ -38,7 +38,7 @@
                             </div>
                             {% for dish_served in dishes_served %}
                                 <div class="grid-row">
-                                    <span>{{dish_served.user.username}}</span>
+                                    <span>{{dish_served.user.fio}}</span>
                                     <span>{{dish_served.dish_name}}</span>
                                 </div>
                             {% endfor %}
@@ -89,7 +89,6 @@
                                     {% for name, units_of_measurement in list_of_possible_products %}
                                         <option>{{name}} - {{units_of_measurement}}</option>
                                     {% endfor %}
-                                    
                                 </select>
                             </div>
                             <div class="field">
@@ -101,27 +100,29 @@
                     </section>
 
                     <section class="card col-6" id="approvals">
-                        <h3>Активные заявки</h3>
-                        <div class="menu-cards">
-                            {% for active_purchase_request in active_purchase_requests %}
-                                <div class="menu-card">
-                                    <h4>Заявка №{{active_purchase_request.id}}</h4>
-                                    <h3>{{active_purchase_request.product_name}} - {{active_purchase_request.product_quantity}} {{active_purchase_request.units_of_measurement}}</h3>
-                                    <span>Статус - <strong><span style="color: rgb(230, 154, 54)">В обработке</span></strong></span>
-                                </div>
-                            {% endfor %}
-                        </div>
-                        <div class="menu-cards">
-                            <h3>Обработанные заявки</h3>
+                        <form class="form">
+                            <h3>Активные заявки</h3>
                             <div class="menu-cards">
-                                {% for processed_purchase_request in processed_purchase_requests %}
+                                {% for active_purchase_request in active_purchase_requests %}
                                     <div class="menu-card">
-                                        <h4>Заявка №{{processed_purchase_request.id}}</h4>
-                                        <h3>{{processed_purchase_request.product_name}} - {{processed_purchase_request.product_quantity}} {{processed_purchase_request.units_of_measurement}}</h3>
-                                        <span>Статус - {% if processed_purchase_request.status %}<strong><span style="color: rgb(73, 173, 48)">Принято</span></strong>{% elif processed_purchase_request.rejected %}<strong><span style="color: rgb(230, 54, 54)">Отклонено</span></strong>{% endif %}</span>
+                                        <h4>Заявка №{{active_purchase_request.id}}</h4>
+                                        <h3>{{active_purchase_request.product_name}} - {{active_purchase_request.product_quantity}} {{active_purchase_request.units_of_measurement}}</h3>
+                                        <span>Статус - <strong><span style="color: rgb(230, 154, 54)">В обработке</span></strong></span>
                                     </div>
                                 {% endfor %}
-                        </div>
+                            </div>
+                            <div class="menu-cards">
+                                <h3>Обработанные заявки</h3>
+                                <div class="menu-cards">
+                                    {% for processed_purchase_request in processed_purchase_requests %}
+                                        <div class="menu-card">
+                                            <h4>Заявка №{{processed_purchase_request.id}}</h4>
+                                            <h3>{{processed_purchase_request.product_name}} - {{processed_purchase_request.product_quantity}} {{processed_purchase_request.units_of_measurement}}</h3>
+                                            <span>Статус - {% if processed_purchase_request.status %}<strong><span style="color: rgb(73, 173, 48)">Принято</span></strong>{% elif processed_purchase_request.rejected %}<strong><span style="color: rgb(230, 54, 54)">Отклонено</span></strong>{% endif %}</span>
+                                        </div>
+                                    {% endfor %}
+                            </div>
+                        </form>
                     </section>
                 </div>
             </div>

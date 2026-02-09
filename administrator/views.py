@@ -14,9 +14,12 @@ def administrator(request):
     purchase_requests = PurchaseRequests.objects.all().exclude(status=True) & PurchaseRequests.objects.all().exclude(rejected=True)
     users = []
 
+    print(purchased_meals, len(purchased_meals))
+
     for purchased_meal in purchased_meals:
         if purchased_meal.user.type == "student":
             users.append(purchased_meal.user.username)
+        print(purchased_meal.paid_for)
         money_received += purchased_meal.paid_for
 
     context = {

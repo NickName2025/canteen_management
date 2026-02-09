@@ -49,8 +49,7 @@ def place_an_order(request):
                     for l in range(4):
                         key += s[randint(0, len(s) - 1)]
 
-                    paid_for = round(float(cart.final_prices.split("|")[:-1][total_i]), 2)
-                    print("paid_for", paid_for)
+                    paid_for = round(float(cart.final_prices.split("|")[:-1][total_i]), 2) // cart.quantity
 
                     PurchasedMeals.objects.create(user=request.user, dish=cart.dish, key=key, paid_for=paid_for)
                 total_i += 1

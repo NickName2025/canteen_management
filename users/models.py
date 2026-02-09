@@ -3,6 +3,7 @@ from django.contrib.auth.models import AbstractUser
 
 
 class User(AbstractUser):
+    fio = models.CharField(max_length=150, verbose_name='ФИО пользователя')
     type = models.CharField(max_length=150, verbose_name='Тип пользователя')
 
     intolerant_of_glucose = models.BooleanField(default=False, verbose_name="Непереносит глюкозу")

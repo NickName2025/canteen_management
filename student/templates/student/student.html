@@ -59,7 +59,7 @@
                                 {% for cart in carts %}
                                     <div class="menu-card-head">
                                         <h4>{{ cart.dish.name }}</h4>
-                                        <span class="menu-price">{{ cart.quantity }} товар(а)</span>
+                                        <span class="menu-price">{{ cart.quantity }} товар(ов)</span>
                                     </div>
                                 {% endfor %}
                             </div>
@@ -94,7 +94,7 @@
                         </div>
                     </section>
 
-                    <section class="card" id="profile">
+                    <section class="card" id="card">
                         <h3>Аллергии и предпочтения</h3>
                         <form action="{% url "student:allergy_indication" %}" method="post">
                             {% csrf_token %}
