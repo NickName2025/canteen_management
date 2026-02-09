@@ -99,6 +99,30 @@
                             <button class="btn" type="submit">Отправить заявку</button>
                         </form>
                     </section>
+
+                    <section class="card col-6" id="approvals">
+                        <h3>Активные заявки</h3>
+                        <div class="menu-cards">
+                            {% for active_purchase_request in active_purchase_requests %}
+                                <div class="menu-card">
+                                    <h4>Заявка №{{active_purchase_request.id}}</h4>
+                                    <h3>{{active_purchase_request.product_name}} - {{active_purchase_request.product_quantity}} {{active_purchase_request.units_of_measurement}}</h3>
+                                    <span>Статус - <strong><span style="color: rgb(230, 154, 54)">В обработке</span></strong></span>
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <div class="menu-cards">
+                            <h3>Обработанные заявки</h3>
+                            <div class="menu-cards">
+                                {% for processed_purchase_request in processed_purchase_requests %}
+                                    <div class="menu-card">
+                                        <h4>Заявка №{{processed_purchase_request.id}}</h4>
+                                        <h3>{{processed_purchase_request.product_name}} - {{processed_purchase_request.product_quantity}} {{processed_purchase_request.units_of_measurement}}</h3>
+                                        <span>Статус - {% if processed_purchase_request.status %}<strong><span style="color: rgb(73, 173, 48)">Принято</span></strong>{% elif processed_purchase_request.rejected %}<strong><span style="color: rgb(230, 54, 54)">Отклонено</span></strong>{% endif %}</span>
+                                    </div>
+                                {% endfor %}
+                        </div>
+                    </section>
                 </div>
             </div>
         </main>

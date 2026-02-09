@@ -12,11 +12,16 @@ def chef(request):
     dishes_served = DishesServed.objects.all()
     dishes = Dishes.objects.all()
     products = Products.objects.all()
+    active_purchase_requests = PurchaseRequests.objects.all().filter(status=False) & PurchaseRequests.objects.all().filter(rejected=False)
+    processed_purchase_requests = PurchaseRequests.objects.all().exclude(status=False) | PurchaseRequests.objects.all().exclude(rejected=False)
 
+    print(active_purchase_requests)
+    
     list_of_possible_products = get_list_of_possible_products()
 
-
     context = {
+        "active_purchase_requests": active_purchase_requests,
+        "processed_purchase_requests": processed_purchase_requests,
         "dishes_served": dishes_served,
         "dishes": dishes,
         "products": products,
