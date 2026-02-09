@@ -67,12 +67,14 @@
                             <div class="chef-panel" data-chef-panel="ready">
                                 <div class="menu-cards">
                                     {% for dish in dishes %}
-                                        <article class="menu-card">
-                                            <div class="menu-card-head">
-                                                <h4>{{ dish.name }}</h4>
-                                                <span class="menu-price">{{ dish.quantity }} ед</span>
-                                            </div>
-                                        </article>
+                                        {% if dish.quantity != 0 %}
+                                            <article class="menu-card">
+                                                <div class="menu-card-head">
+                                                    <h4>{{ dish.name }}</h4>
+                                                    <span class="menu-price">{{ dish.quantity }} ед</span>
+                                                </div>
+                                            </article>
+                                        {% endif %}
                                     {% endfor %}
                                 </div>
                             </div>
